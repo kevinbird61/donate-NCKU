@@ -11,10 +11,12 @@ class IntroService {
     }
     index(req,res){
         var linkobj = jsfs.readFileSync(path.join(__dirname,'static','navbar_link.json'));
+        var type = (req.query.type == undefined) ? 'TW' : req.query.type;
 
         res.render('index',{
             title: "Donate-NCKU",
-            link: linkobj.index
+            link: linkobj.index,
+            type: type
         });
     }
     about(req,res){
@@ -23,25 +25,29 @@ class IntroService {
     department(req,res){
         var depobj = jsfs.readFileSync(path.join(__dirname,'static','department.json'));
         var linkobj = jsfs.readFileSync(path.join(__dirname,'static','navbar_link.json'));
+        var type = (req.query.type == undefined) ? 'TW' : req.query.type;
 
         res.render('department',{
             title: "Choose your department",
             link: linkobj.index,
-            department: depobj.all
+            department: depobj.all,
+            type: type
         })
     }
     dep_page(req,res){
+        // Parsing from request
+        var language_type = (req.query.type == undefined) ? 'TW' : req.query.type;
+        var type = req.query.dep_type;
         // You can custom each link obj by yourself
         var linkobj = jsfs.readFileSync(path.join(__dirname,'static','navbar_link.json'));
         // Get the content of this department
         // FIXME: need to use database instead of json format to store this. But current use the json.
         var dep_detail = jsfs.readFileSync(path.join(__dirname,'static','department',type+'.json'));
 
-        var type = req.query.type;
-
         res.render('dep_page',{
             title: "Department of "+type,
-            link: linkobj,
+            link: linkobj.dep_page,
+            type: language_type,
             content: dep_detail
         });
     }

@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Donate-NCKU</a>
+            <a class="navbar-brand" href="/">Donate-NCKU</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -17,7 +17,33 @@
             <ul class="nav navbar-nav">
                 <!-- Put all link in here (Left) -->
                 <% for(var index in link.left){ %>
-                    <li><a href="<%= link.left[index].link %>"><%= link.left[index].name.TW %></a></li>
+                    <% if(link.left[index].type == "pure_link"){ %>
+                        <% if( type == 'TW'){ %>
+                            <li><a href="<%= link.left[index].link %>"><%= link.left[index].name.TW %></a></li>
+                        <% } else if( type == 'US'){ %>
+                            <li><a href="<%= link.left[index].link %>"><%= link.left[index].name.US %></a></li>
+                        <% } %>
+                    <% } else if(link.left[index].type == "dropdown"){ %>
+                        <% if( type == 'TW'){ %>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= link.left[index].name.TW %><span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <% for(var d_index in link.left[index].sublink ){ %>
+                                        <li><a href="<%= link.left[index].sublink[d_index].link %>"><%= link.left[index].sublink[d_index].name.TW %></a></li>
+                                    <% } %>
+                                </ul>
+                            </li>
+                        <% } else if( type == 'US'){ %>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= link.left[index].name.US %><span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <% for(var d_index in link.left[index].sublink ){ %>
+                                        <li><a href="<%= link.left[index].sublink[d_index].link %>"><%= link.left[index].sublink[d_index].name.US %></a></li>
+                                    <% } %>
+                                </ul>
+                            </li>
+                        <% } %>
+                    <% } %>
                 <% } %>
             </ul>
             <!-- Search form in here -->
@@ -32,7 +58,33 @@
             <!-- Right -->
             <ul class="nav navbar-nav navbar-right">
                 <% for(var index in link.right){ %>
-                    <li><a href="<%= link.right[index].link %>" target="_blank"><%= link.right[index].name.TW %></a></li>
+                    <% if(link.right[index].type == "pure_link"){ %>
+                        <% if( type == 'TW'){ %>
+                            <li><a href="<%= link.right[index].link %>"><%= link.right[index].name.TW %></a></li>
+                        <% } else if( type == 'US'){ %>
+                            <li><a href="<%= link.right[index].link %>"><%= link.right[index].name.US %></a></li>
+                        <% } %>
+                    <% } else if(link.right[index].type == "dropdown"){ %>
+                        <% if( type == 'TW'){ %>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= link.right[index].name.TW %><span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <% for(var d_index in link.right[index].sublink ){ %>
+                                        <li><a href="<%= link.right[index].sublink[d_index].link %>"><%= link.right[index].sublink[d_index].name.TW %></a></li>
+                                    <% } %>
+                                </ul>
+                            </li>
+                        <% } else if( type == 'US'){ %>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= link.right[index].name.US %><span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <% for(var d_index in link.right[index].sublink ){ %>
+                                        <li><a href="<%= link.right[index].sublink[d_index].link %>"><%= link.right[index].sublink[d_index].name.US %></a></li>
+                                    <% } %>
+                                </ul>
+                            </li>
+                        <% } %>
+                    <% } %>
                 <% } %>
             </ul>
         </div>

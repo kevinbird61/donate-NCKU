@@ -24,7 +24,7 @@ body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                     </div>
                 </div>
                 <div class="w3-half">
-                    <input type="text" id="filter" class="w3-white w3-border-0 w3-padding w3-round-xlarge" onkeyup="textchange(this.id)" style="width:100%" placeholder="You can use project name , owner to search..." name="filter">
+                    <input type="text" id="filter" class="w3-white w3-border-0 w3-padding w3-round-xlarge" onkeyup="textchange(this.id)" style="width:100%" placeholder="Enter 'department name' to filter..." name="filter">
                 </div>
                 <div class="w3-quarter">
                     <div class="w3-bar w3-xlarge">
@@ -59,17 +59,19 @@ body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         var department_list = document.getElementById('departmentboard').children;
         for(var index in department_list){
             console.log("found:" + department_list[index].id);
-            if(!department_list[index].id.toUpperCase().includes(content.toUpperCase())){
-                department_list[index].style.display = 'none';
-            }
-            else{
-                department_list[index].style.display = 'block';
+            if(department_list[index].id != undefined){
+                if(!department_list[index].id.toUpperCase().includes(content.toUpperCase())){
+                    department_list[index].style.display = 'none';
+                }
+                else{
+                    department_list[index].style.display = 'block';
+                }
             }
         }
     }
     // Go to target department to see the content
     function gotoDep(target){
-        window.location.replace('/dep_page?type='+target);
+        window.location.replace('/dep_page?dep_type='+target);
     }
 </script>
 </html>

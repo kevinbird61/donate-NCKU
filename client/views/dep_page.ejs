@@ -1,0 +1,116 @@
+<html>
+<head>
+    <!-- Template -->
+    <% include ../elements/meta %>
+    <% include ../elements/lib %>
+</head>
+<header>
+    <!-- Navbar goes here -->
+    <% include ../elements/navbar_template %>
+</header>
+<body>
+    <!-- Search Bar implement -->
+    <div class="w3-center w3-row-padding w3-light-gray" style="height: 70px">
+        <!-- <form action="/pjfilter" class="w3-container w3-card-4 w3-light-grey w3-round-xxlarge" method="POST"> -->
+            <div class="w3-center w3-padding w3-xlarge">
+                <div class="w3-quarter">
+                    <div class="w3-bar">
+                        <h3><i class="fa fa-search-plus" aria-hidden="true"></i> Search </h3>
+                    </div>
+                </div>
+                <div class="w3-half">
+                    <input type="text" id="filter" class="w3-white w3-border-0 w3-padding w3-round-xlarge" onkeyup="textchange(this.id)" style="width:100%" placeholder="Enter 'lecturer name' to search..." name="filter">
+                </div>
+                <div class="w3-quarter">
+                    <div class="w3-bar w3-xlarge">
+                        <!-- <button class="w3-btn w3-round-xxlarge w3-light-grey w3-hover-yellow" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button> -->
+                        <button class="w3-btn w3-round-xxlarge w3-light-grey w3-hover-red" type="reset"><i class="fa fa-undo" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>
+        <!-- </form> -->
+    </div>
+    <p>
+    <!-- Show the list of lecturer -->
+    <h1 class="w3-center"> Article Lecture </h1>
+    <div class="w3-row-padding" id="lectureboard_a">
+        <!-- Template  -->
+        <% for(var index in content.article){ %>
+            <div class="w3-third w3-container" id="<%= content.article[index].lecturer %>">
+                <!-- Custom department banner here -->
+                <img src="http://i.imgur.com/RTx4hLq.jpg" alt="Norway" onclick="Popout('<%= content.article[index].lecturer %>','<%= content.article[index].content %>','<%= content.article[index].img_url %>')" style="width:100%" class="w3-hover-opacity">
+                <div class="w3-container w3-aqua w3-round-large">
+                    <br>
+                    <p><b><%= content.article[index].lecturer %></b></p>
+                    <p><%= content.article[index].about %></p>
+                </div>
+            </div>
+        <% } %>
+    </div>
+    <h1 class="w3-center"> Video Lecture </h1>
+    <div class="w3-row-padding" id="lectureboard_v">
+        <% for(var index in content.video){ %>
+            <div class="w3-third w3-container" id="<%= content.video[index].lecturer %>">
+                <!-- Custom department banner here -->
+                <img src="http://i.imgur.com/RTx4hLq.jpg" alt="Norway" onclick="" style="width:100%" class="w3-hover-opacity">
+                <div class="w3-container w3-aqua w3-round-large">
+                    <br>
+                    <p><b><%= content.video[index].lecturer %></b></p>
+                    <p><%= content.video[index].about %></p>
+                </div>
+            </div>
+        <% } %>
+    </div>
+
+    <!-- Hidden Modal -->
+    <div id="fullscreen" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+        <span class="w3-button w3-black w3-xlarge w3-display-topright"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+        <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+            <h3 id="fs_name"></h3>
+            <img id="fs_img" class="w3-class" style="width:100%;">
+            <br>
+            <p>
+            <p id="fs_content"></p>
+        </div>
+    </div>
+
+</body>
+<script>
+// Text change to fileter to dom objects
+function textchange(id){
+    var content = document.getElementById(id).value;
+    var article_list = document.getElementById('lectureboard_a').children;
+    var video_list = document.getElementById('lectureboard_v').children;
+    for(var index in article_list){
+        console.log("found:" + article_list[index].id);
+        if(article_list[index].id != undefined){
+            if(!article_list[index].id.toUpperCase().includes(content.toUpperCase())){
+                article_list[index].style.display = 'none';
+            }
+            else{
+                article_list[index].style.display = 'block';
+            }
+        }
+    }
+    for(var index in video_list){
+        console.log("found:" + video_list[index].id);
+        if(video_list[index].id != undefined){
+            if(!video_list[index].id.toUpperCase().includes(content.toUpperCase())){
+                video_list[index].style.display = 'none';
+            }
+            else{
+                video_list[index].style.display = 'block';
+            }
+        }
+    }
+}
+// FullScreen display
+function Popout(name,content,img_url){
+    document.getElementById("fullscreen").style.display = "block";
+    document.getElementById("fs_name").innerHTML = name;
+    document.getElementById("fs_content").innerHTML = content;
+    document.getElementById("fs_img").src = img_url;
+}
+
+</script>
+</html>

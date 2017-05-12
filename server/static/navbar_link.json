@@ -20,11 +20,54 @@
         ],
         "right": [
             {
+                "type": "dropdown",
+                "name": {
+                    "TW": "語言選擇",
+                    "US": "Language"
+                },
+                "sublink": [
+                    {
+                        "link": "/?type=TW",
+                        "name":{
+                            "TW":"繁體中文",
+                            "US":"Traditional Chinese"
+                        }
+                    },
+                    {
+                        "link": "/?type=US",
+                        "name":{
+                            "TW":"英語",
+                            "US":"English"
+                        }
+                    }
+                ]
+            },
+            {
                 "type": "pure_link",
                 "link": "https://github.com/kevinbird61/donate-NCKU",
                 "name": {
                     "TW": "原始碼",
                     "US": "Source code"
+                }
+            }
+        ]
+    },
+    "dep_page":{
+        "left": [
+            {
+                "type": "pure_link",
+                "link": "/",
+                "name": {
+                    "TW": "回到首頁",
+                    "US": "Home"
+                }
+            },
+            {
+                "type": "pure_link",
+                "link": "/department",
+                "name": {
+                    "TW": "回系所選擇",
+                    "US": "Back to choose the department."
                 }
             }
         ]
