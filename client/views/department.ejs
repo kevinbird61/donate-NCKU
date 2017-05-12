@@ -1,0 +1,75 @@
+<html>
+<head>
+    <!-- Template -->
+    <% include ../elements/meta %>
+    <% include ../elements/lib %>
+</head>
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+.w3-third img{margin-bottom: -6px; opacity: 0.8; cursor: pointer}
+.w3-third img:hover{opacity: 1}
+</style>
+<header>
+    <!-- Navbar goes here -->
+    <% include ../elements/navbar_template %>
+</header>
+<body>
+    <!-- Search Bar implement -->
+    <div class="w3-center w3-row-padding w3-light-gray" style="height: 70px">
+        <!-- <form action="/pjfilter" class="w3-container w3-card-4 w3-light-grey w3-round-xxlarge" method="POST"> -->
+            <div class="w3-center w3-padding w3-xlarge">
+                <div class="w3-quarter">
+                    <div class="w3-bar">
+                        <h3><i class="fa fa-search-plus" aria-hidden="true"></i> Filter </h3>
+                    </div>
+                </div>
+                <div class="w3-half">
+                    <input type="text" id="filter" class="w3-white w3-border-0 w3-padding w3-round-xlarge" onkeyup="textchange(this.id)" style="width:100%" placeholder="You can use project name , owner to search..." name="filter">
+                </div>
+                <div class="w3-quarter">
+                    <div class="w3-bar w3-xlarge">
+                        <!-- <button class="w3-btn w3-round-xxlarge w3-light-grey w3-hover-yellow" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button> -->
+                        <button class="w3-btn w3-round-xxlarge w3-light-grey w3-hover-red" type="reset"><i class="fa fa-undo" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>
+        <!-- </form> -->
+    </div>
+    <p>
+    <!-- Show the list of department -->
+    <div class="w3-row-padding" id="departmentboard">
+        <!-- Template  -->
+        <% for(var index in department){ %>
+            <div class="w3-third w3-container" id="<%= department[index].US %>">
+                <!-- Custom department banner here -->
+                <img src="http://i.imgur.com/RTx4hLq.jpg" alt="Norway" onclick="gotoDep('<%= department[index].US %>')" style="width:100%" class="w3-hover-opacity">
+                <div class="w3-container w3-khaki w3-round-large">
+                    <br>
+                    <p><b><%= department[index].US %></b></p>
+                    <p><%= department[index].loc %></p>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</body>
+<script>
+    // Text change to fileter to dom objects
+    function textchange(id){
+        var content = document.getElementById(id).value;
+        var department_list = document.getElementById('departmentboard').children;
+        for(var index in department_list){
+            console.log("found:" + department_list[index].id);
+            if(!department_list[index].id.toUpperCase().includes(content.toUpperCase())){
+                department_list[index].style.display = 'none';
+            }
+            else{
+                department_list[index].style.display = 'block';
+            }
+        }
+    }
+    // Go to target department to see the content
+    function gotoDep(target){
+        window.location.replace('/dep_page?type='+target);
+    }
+</script>
+</html>

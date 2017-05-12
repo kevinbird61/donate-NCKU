@@ -1,0 +1,32 @@
+{
+    "index":{
+        "left": [
+            {
+                "type": "pure_link",
+                "link": "/about",
+                "name": {
+                    "TW": "關於我們",
+                    "US": "About Team"
+                }
+            },
+            {
+                "type": "pure_link",
+                "link": "/department",
+                "name": {
+                    "TW": "選擇系所",
+                    "US": "Department"
+                }
+            }
+        ],
+        "right": [
+            {
+                "type": "pure_link",
+                "link": "https://github.com/kevinbird61/donate-NCKU",
+                "name": {
+                    "TW": "原始碼",
+                    "US": "Source code"
+                }
+            }
+        ]
+    }
+}
