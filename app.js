@@ -3,11 +3,10 @@ const path = require('path');
 const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const app = express();
-var expressWs = require('express-ws')(app);
 
 const { IntroService } = require('./server/intro');
+const { WebSocket } = require('./server/ws');
 const { Manager } = require('./server/manager');
 
 /* Setting static directory */
@@ -37,6 +36,7 @@ IntroService.init(app);
 Manager.init(app);
 
 const server = http.createServer(app);
+WebSocket.init(server);
 
 server.listen(process.env.npm_package_config_port, function() {
     console.log("SCABER server listening on port " + process.env.npm_package_config_port);

@@ -1,14 +1,23 @@
 {
     "article": [
         {
+            "title": "example title",
             "lecturer": "Lecturer.",
             "about": "Something about me.",
+            "img_url": "http://i.imgur.com/RTx4hLq.jpg",
+            "content": "something need to say..."
+        },
+        {
+            "title": "How to use Qt to implement Android game?",
+            "lecturer": "kevinbird61",
+            "about": "Kevin Cyu, TA in pd2",
             "img_url": "http://i.imgur.com/RTx4hLq.jpg",
             "content": "something need to say..."
         }
     ],
     "video": [
         {
+            "title": "example title",
             "lecturer": "Lecturer(video).",
             "about": "Something about me.",
             "img_url": "http://i.imgur.com/RTx4hLq.jpg",

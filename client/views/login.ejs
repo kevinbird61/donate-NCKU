@@ -3,6 +3,8 @@
     <!-- Template -->
     <% include ../elements/meta %>
     <% include ../elements/lib %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script> <!-- Socket.io lib -->
+    <script src="sjcl.js"></script> <!-- Sjcl lib -->
 </head>
 <header>
     <!-- Navbar goes here -->
@@ -36,7 +38,7 @@
                         <br>
                         <!-- Submit button -->
                         <div class="w3-half w3-center">
-                            <button class="w3-btn w3-round-xxlarge w3-gray w3-hover-yellow" onclick="enroll()" type="submit">Submit</button>
+                            <button class="w3-btn w3-round-xxlarge w3-gray w3-hover-yellow" onclick="sign()" type="submit">Submit</button>
                         </div>
                         <div class="w3-half w3-center">
                             <button class="w3-btn w3-round-xxlarge w3-grey w3-hover-red" type="reset">Clear</button>
@@ -53,17 +55,37 @@
 </body>
 
 <script>
-window.WebSocket = window.WebSocket || window.MozWebSocket;
-
-if(!window.WebSocket){
-    console.log("Doesn't support window socket!");
-}
-
-// Build socket channel
-const socket = new WebSocket(`ws://${location.host}/login`);
-socket.addEventListener('open',function(event){
-    socket.send('Start!');
+// Enable socket io service
+const socket = io();
+var currentkey = '';
+// join channel - FIXME: user name need to add in here(as room_name)
+socket.emit('join',{
+    room_name: "Login Page"
 });
+socket.on('getKey',function(key){
+    currentkey = key;
+})
+socket.on('login',function(msg){
+    if(msg.type=='accept'){
+        // prepare to go to user page , redirection in 3 sec
+        document.getElementById('HelpBlock').className = 'w3-text-green form-text text-muted';
+        document.getElementById('HelpBlock').innerHTML = 'Sucessfully login!';
+        // setTimeout to do the redirect trick
+        // Using key generator to accept login in to user's page
+        setTimeout(function(){
+            // FIXME: if support database, enable key (e.g. user token) to enhance safety
+            window.location.replace('/user?username='+msg.user);
+        },3000);
+    }
+    else{
+        document.getElementById('HelpBlock').className = 'w3-text-red form-text text-muted';
+        document.getElementById('HelpBlock').innerHTML = 'Error with username or passwd!';
+    }
+});
+// disconnect from server
+window.addEventListener("beforeunload", function(e){
+    socket.emit('disconnect');
+}, false);
 
 function changeFocus(id){
     document.getElementById(id).className = 'active';
@@ -75,11 +97,11 @@ function changeFocus(id){
         document.getElementById('signup_tab').className = '';
     }
 }
-function enroll(){
+function sign(){
     var uname = document.getElementById('username').value;
     var upass = document.getElementById('password').value;
     if(uname.length < 8 || upass.length < 8 ){
-        //
+        // Info box
         document.getElementById('HelpBlock').className = 'w3-text-red form-text text-muted';
         document.getElementById('HelpBlock').innerHTML = 'Your username/password need to longer than 8 characters.';
         setTimeout(function(){
@@ -87,7 +109,23 @@ function enroll(){
         },4000);
     }
     else{
-        socket.send(uname);
+        // console.log(sjcl.decrypt("websocket",sjcl.encrypt('websocket',uname)));
+        var obj = {
+            key: currentkey,
+            username: sjcl.encrypt(currentkey,uname),
+            passwd: sjcl.encrypt(currentkey,upass)
+        }
+        // Info box
+        document.getElementById('HelpBlock').className = 'w3-text-blue form-text text-muted';
+        document.getElementById('HelpBlock').innerHTML = 'Loading...';
+        if(document.getElementById('signin_tab').className == 'active'){
+            // Now is sign in
+            socket.emit('login',obj);
+        }
+        else{
+            // Now is sign up
+            socket.emit('signup',obj);
+        }
     }
 }
 </script>

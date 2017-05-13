@@ -20,6 +20,14 @@
         ],
         "right": [
             {
+                "type": "pure_link",
+                "link": "/login",
+                "name": {
+                    "TW": "登入/註冊",
+                    "US": "Sign In/Sign Up"
+                }
+            },
+            {
                 "type": "dropdown",
                 "name": {
                     "TW": "語言選擇",
@@ -27,14 +35,14 @@
                 },
                 "sublink": [
                     {
-                        "link": "/?type=TW",
+                        "link": "?type=TW",
                         "name":{
                             "TW":"繁體中文",
                             "US":"Traditional Chinese"
                         }
                     },
                     {
-                        "link": "/?type=US",
+                        "link": "?type=US",
                         "name":{
                             "TW":"英語",
                             "US":"English"
@@ -70,6 +78,79 @@
                     "US": "Back to choose the department."
                 }
             }
+        ],
+        "right": [
+            {
+                "type": "dropdown",
+                "name": {
+                    "TW": "語言選擇",
+                    "US": "Language"
+                },
+                "sublink": [
+                    {
+                        "link": "&type=TW",
+                        "name":{
+                            "TW":"繁體中文",
+                            "US":"Traditional Chinese"
+                        }
+                    },
+                    {
+                        "link": "&type=US",
+                        "name":{
+                            "TW":"英語",
+                            "US":"English"
+                        }
+                    }
+                ]
+            }
         ]
+    },
+    "login":{
+
+    },
+    "user_page":{
+        "right":[
+            {
+                "type": "pure_link",
+                "link": "/content?etype=article",
+                "name": {
+                    "TW": "新增文章分享",
+                    "US": "New Article"
+                }
+            },
+            {
+                "type": "pure_link",
+                "link": "/content?etype=video",
+                "name": {
+                    "TW": "新增影片分享",
+                    "US": "New Video"
+                }
+            },{
+                "type": "dropdown",
+                "name": {
+                    "TW": "語言選擇",
+                    "US": "Language"
+                },
+                "sublink": [
+                    {
+                        "link": "&type=TW",
+                        "name":{
+                            "TW":"繁體中文",
+                            "US":"Traditional Chinese"
+                        }
+                    },
+                    {
+                        "link": "&type=US",
+                        "name":{
+                            "TW":"英語",
+                            "US":"English"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "edit_page": {
+
     }
 }

@@ -15,6 +15,7 @@ class IntroService {
 
         res.render('index',{
             title: "Donate-NCKU",
+            url: req.url,
             link: linkobj.index,
             type: type
         });
@@ -29,6 +30,7 @@ class IntroService {
 
         res.render('department',{
             title: "Choose your department",
+            url: req.url,
             link: linkobj.index,
             department: depobj.all,
             type: type
@@ -46,6 +48,7 @@ class IntroService {
 
         res.render('dep_page',{
             title: "Department of "+type,
+            url: req.url,
             link: linkobj.dep_page,
             type: language_type,
             content: dep_detail

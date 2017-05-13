@@ -1,6 +1,7 @@
 {
     "article": [
         {
+            "title": "example title",
             "lecturer": "Lecturer.",
             "about": "Something about me.",
             "img_url": "http://i.imgur.com/RTx4hLq.jpg",
@@ -9,6 +10,7 @@
     ],
     "video": [
         {
+            "title": "example title",
             "lecturer": "Lecturer(video).",
             "about": "Something about me.",
             "img_url": "http://i.imgur.com/RTx4hLq.jpg",
