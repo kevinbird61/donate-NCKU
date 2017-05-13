@@ -86,7 +86,8 @@ class Manager {
             // Show the editor page
             res.render('edit',{
                 title: "Add Article page",
-                page_type: "new",
+                page_type: "new_article",
+                user: user,
                 url: req.url,
                 dep: depobj,
                 link: linkobj.edit_page,
@@ -95,7 +96,29 @@ class Manager {
         }
         else if(type == 'edit'){
             // FIXME: find the target to modify
-            res.end('Working...');
+            let dep = req.query.dep;
+            let lecturer = req.query.lecturer;
+            let title = req.query.title;
+            var linkobj = jsfs.readFileSync(path.join(__dirname,'static','navbar_link.json'));
+            var dep_detail = jsfs.readFileSync(path.join(__dirname,'static','department',dep+'.json'));
+            for(var index in dep_detail.article){
+                if(dep_detail.article[index].lecturer == lecturer && dep_detail.article[index].title == title){
+                    res.render('edit',{
+                        title: "Modify Article page",
+                        page_type: "modify_article",
+                        user: lecturer,
+                        url: req.url,
+                        dep: depobj,
+                        thisdep: dep,
+                        thistitle: title,
+                        thiscontent: dep_detail.article[index].content,
+                        link: linkobj.edit_page,
+                        type: ltype
+                    });
+                    return;
+                }
+            }
+            res.end("Error occur!");
         }
         else if(type == 'video'){
             res.end('Video has not support yet.')
@@ -112,6 +135,55 @@ class Manager {
         let content = req.body.content;
         // FIXME: store into database
         console.log(edit_type+';'+title+';'+dep+';'+lecturer+';'+content);
+        if(edit_type == "new_article"){
+            // Store back into specific department
+            var dep_detail = jsfs.readFileSync(path.join(__dirname,'static','department',dep+'.json'));
+            // check whether it is duplicated or not
+            for(var index in dep_detail.article){
+                if(dep_detail.article[index].lecturer == lecturer && dep_detail.article[index].title == title){
+                    // duplicated
+                    res.end("duplicated! do nothing...");
+                    return;
+                }
+            }
+            // Add this new obj into dep_detail
+            var new_obj = {
+                title: title,
+                lecturer: lecturer,
+                about: "Something, need to fetch from user data",
+                img_url: "http://i.imgur.com/RTx4hLq.jpg",
+                content: content
+            }
+            dep_detail.article.push(new_obj);
+            // write back into department json
+            jsfs.writeFile(path.join(__dirname,'static','department',dep+'.json'),dep_detail,{spaces: 2}, (err) => {
+                if(err)
+                    res.end("Error when writing file in specific department: " + err);
+                else{
+                    res.redirect('/department');
+                }
+            });
+        }
+        else if(edit_type == "modify_article"){
+            var dep_detail = jsfs.readFileSync(path.join(__dirname,'static','department',dep+'.json'));
+            // check whether it is duplicated or not
+            for(var index in dep_detail.article){
+                if(dep_detail.article[index].lecturer == lecturer && dep_detail.article[index].title == title){
+                    // update
+                    dep_detail.article[index].content = content;
+                    // store back
+                    jsfs.writeFile(path.join(__dirname,'static','department',dep+'.json'),dep_detail,{spaces: 2}, (err) => {
+                        if(err)
+                            res.end("Error when writing file in specific department: " + err);
+                        else{
+                            res.redirect('/department');
+                        }
+                    });
+                    return;
+                }
+            }
+            res.end("Modify not found. Cause error !");
+        }
     }
 }
 
