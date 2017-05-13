@@ -4,8 +4,11 @@ const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const { IntroService } = require('./server/intro');
 const app = express();
+var expressWs = require('express-ws')(app);
+
+const { IntroService } = require('./server/intro');
+const { Manager } = require('./server/manager');
 
 /* Setting static directory */
 app.use(express.static('client/elements'));
@@ -31,6 +34,7 @@ app.use(require('express-session')({
 
 /* Modules */
 IntroService.init(app);
+Manager.init(app);
 
 const server = http.createServer(app);
 
