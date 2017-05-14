@@ -51,6 +51,8 @@ class IntroService {
             url: req.url,
             link: linkobj.dep_page,
             type: language_type,
+            dep_type: type,
+            currency: "NTD",
             content: dep_detail
         });
     }

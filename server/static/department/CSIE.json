@@ -1,48 +1,53 @@
 {
-  "article": [
-    {
-      "title": "example title",
-      "lecturer": "Lecturer.",
-      "about": "Something about me.",
-      "img_url": "http://i.imgur.com/RTx4hLq.jpg",
-      "content": "something need to say..."
-    },
-    {
-      "title": "How to use Qt to implement Android game?",
-      "lecturer": "kevinbird61",
-      "about": "Kevin Cyu, TA in pd2",
-      "img_url": "http://i.imgur.com/RTx4hLq.jpg",
-      "content": "Here comes a project name bbtan."
-    },
-    {
-      "title": "Kevin's factory",
-      "lecturer": "kevinbird61",
-      "about": "Something, need to fetch from user data",
-      "img_url": "http://i.imgur.com/RTx4hLq.jpg",
-      "content": "Testing sheet.Do some treat."
-    },
-    {
-      "title": "New toy!",
-      "lecturer": "kevinbird61",
-      "about": "Something, need to fetch from user data",
-      "img_url": "http://i.imgur.com/RTx4hLq.jpg",
-      "content": "new toy!"
-    },
-    {
-      "title": "Cross Title!",
-      "lecturer": "kevinbird6161",
-      "about": "Something, need to fetch from user data",
-      "img_url": "http://i.imgur.com/RTx4hLq.jpg",
-      "content": "Test nextline.\r\nhttps://github.com/kevinbird61/donate-NCKU\r\nTest uRL."
+    "article": [
+        {
+            "title": "example title",
+            "lecturer": "Lecturer.",
+            "about": "Something about me.",
+            "img_url": "http://i.imgur.com/RTx4hLq.jpg",
+            "content": "something need to say..."
+        },
+        {
+            "title": "How to use Qt to implement Android game?",
+            "lecturer": "kevinbird61",
+            "about": "Kevin Cyu, TA in pd2",
+            "img_url": "http://i.imgur.com/RTx4hLq.jpg",
+            "content": "Here comes a project name bbtan."
+        },
+        {
+            "title": "Kevin's factory",
+            "lecturer": "kevinbird61",
+            "about": "Something, need to fetch from user data",
+            "img_url": "http://i.imgur.com/RTx4hLq.jpg",
+            "content": "Testing sheet.Do some treat."
+        },
+        {
+            "title": "New toy!",
+            "lecturer": "kevinbird61",
+            "about": "Something, need to fetch from user data",
+            "img_url": "http://i.imgur.com/RTx4hLq.jpg",
+            "content": "new toy!"
+        },
+        {
+            "title": "Cross Title!",
+            "lecturer": "kevinbird6161",
+            "about": "Something, need to fetch from user data",
+            "img_url": "http://i.imgur.com/RTx4hLq.jpg",
+            "content": "Test nextline.\r\nhttps://github.com/kevinbird61/donate-NCKU\r\nTest uRL."
+        }
+    ],
+    "video": [
+        {
+            "title": "example title",
+            "lecturer": "Lecturer(video).",
+            "about": "Something about me.",
+            "img_url": "http://i.imgur.com/RTx4hLq.jpg",
+            "content": "something need to say..."
+        }
+    ],
+    "donate": {
+        "target": 10000,
+        "current": 3100,
+        "currency": "NTD"
     }
-  ],
-  "video": [
-    {
-      "title": "example title",
-      "lecturer": "Lecturer(video).",
-      "about": "Something about me.",
-      "img_url": "http://i.imgur.com/RTx4hLq.jpg",
-      "content": "something need to say..."
-    }
-  ]
 }

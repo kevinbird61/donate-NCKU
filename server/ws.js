@@ -98,6 +98,27 @@ class WebSocket {
                     }
                 }); // read from profile.json
             }); // signup listening
+            // "donate"
+            socket.on("donate",function(donation){
+                jsfs.readFile(path.join(__dirname,'static','department',donation.dep+'.json'), (err,data)=>{
+                    if(donation.currency == data.donate.currency){
+                        // don't need to change
+                        data.donate.current += donation.dollar;
+                        if(data.donate.current > data.donate.target){
+                            // FIXME : mail the maintainer !
+                            console.log("Reach the target!");
+                        }
+                        jsfs.writeFileSync(path.join(__dirname,'static','department',donation.dep+'.json'),data,{spaces: 4});
+                        socket.emit('update',{
+                            current: data.donate.current,
+                            target: data.donate.target
+                        });
+                    }
+                    else{
+                        // TODO
+                    }
+                }); // read department json
+            }); // donation service
         }); // sockets connection listening
     }
 }

@@ -16,5 +16,10 @@
             "img_url": "http://i.imgur.com/RTx4hLq.jpg",
             "content": "something need to say..."
         }
-    ]
+    ],
+    "donate": {
+        "target": 10000000,
+        "current": 1000,
+        "currency": "NTD"
+    }
 }
