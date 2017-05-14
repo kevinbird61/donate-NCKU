@@ -44,7 +44,8 @@ class WebSocket {
                         }
                         // not match
                         socket.emit('login',{
-                            type: 'error'
+                            type: 'error',
+                            msg: 'Not found this user, you can use \'sign up\' to use our service!'
                         });
                     }
                 })
@@ -77,7 +78,7 @@ class WebSocket {
                         };
                         data.profile.push(obj);
                         // FIXME: Write into database
-                        jsfs.writeFile(path.join(__dirname,'static','user','profile.json'),data.profile,{spaces: 2},(err) => {
+                        jsfs.writeFile(path.join(__dirname,'static','user','profile.json'),data,{spaces: 2},(err) => {
                             if(err){
                                 // not match -> Enroll success
                                 socket.emit('login',{
