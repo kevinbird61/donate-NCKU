@@ -27,6 +27,13 @@
       "about": "Something, need to fetch from user data",
       "img_url": "http://i.imgur.com/RTx4hLq.jpg",
       "content": "new toy!"
+    },
+    {
+      "title": "Cross Title!",
+      "lecturer": "kevinbird6161",
+      "about": "Something, need to fetch from user data",
+      "img_url": "http://i.imgur.com/RTx4hLq.jpg",
+      "content": "Test nextline.\r\nhttps://github.com/kevinbird61/donate-NCKU\r\nTest uRL."
     }
   ],
   "video": [

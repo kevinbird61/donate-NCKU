@@ -38,7 +38,10 @@
         <% for(var index in content.article){ %>
             <div class="w3-third w3-container" id="<%= content.article[index].lecturer %>">
                 <!-- Custom department banner here -->
-                <img src="http://i.imgur.com/RTx4hLq.jpg" alt="Norway" onclick="Popout('<%= content.article[index].lecturer %>','<%= content.article[index].content %>','<%= content.article[index].img_url %>')" style="width:100%" class="w3-hover-opacity">
+                <input type="hidden" id="a_content_<%= index %>" value="<%= content.article[index].content %>">
+                <input type="hidden" id="a_lecturer_<%= index %>" value="<%= content.article[index].lecturer %>">
+                <input type="hidden" id="a_img_<%= index %>" value="<%= content.article[index].img_url %>">
+                <img src="<%= content.article[index].img_url %>" alt="Norway" onclick="Popout(<%= index %>)" style="width:100%" class="w3-hover-opacity">
                 <div class="w3-container w3-aqua w3-round-large">
                     <br>
                     <p><b><%= content.article[index].lecturer %></b></p>
@@ -105,11 +108,11 @@ function textchange(id){
     }
 }
 // FullScreen display
-function Popout(name,content,img_url){
+function Popout(index){
     document.getElementById("fullscreen").style.display = "block";
-    document.getElementById("fs_name").innerHTML = name;
-    document.getElementById("fs_content").innerHTML = content;
-    document.getElementById("fs_img").src = img_url;
+    document.getElementById("fs_name").innerHTML = document.getElementById('a_lecturer_'+index).value;
+    document.getElementById("fs_content").innerHTML = document.getElementById('a_content_'+index).value;
+    document.getElementById("fs_img").src = document.getElementById('a_img_'+index).value;
 }
 
 </script>

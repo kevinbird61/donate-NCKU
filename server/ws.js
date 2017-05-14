@@ -51,9 +51,53 @@ class WebSocket {
             });
             // "signup"
             socket.on("signup",function(userObj){
-                console.dir(userObj);
-            });
-        });
+                // decode by userObj.key
+                let uname = sjcl.decrypt(userObj.key,userObj.username);
+                let upass = sjcl.decrypt(userObj.key,userObj.passwd);;
+                // FIXME: using database to store instead json file
+                jsfs.readFile(path.join(__dirname,'static','user','profile.json'),(err,data) => {
+                    if(err)
+                        console.log("Read user profile error!");
+                    else{
+                        let flag = 1;
+                        for(var index in data.profile){
+                            if(data.profile[index].username == uname){
+                                // This account has been enroll
+                                socket.emit('login',{
+                                    type: 'error',
+                                    msg: 'This account has been used, try another one!'
+                                })
+                                return;
+                            }
+                        }
+                        // user obj
+                        var obj = {
+                            username: uname,
+                            passwd: upass
+                        };
+                        data.profile.push(obj);
+                        // FIXME: Write into database
+                        jsfs.writeFile(path.join(__dirname,'static','user','profile.json'),data.profile,{spaces: 2},(err) => {
+                            if(err){
+                                // not match -> Enroll success
+                                socket.emit('login',{
+                                    type: 'error',
+                                    msg: 'Internal Server Error, please contact server maintainer!'
+                                });
+                            }
+                            else{
+                                // not match -> Enroll success
+                                socket.emit('login',{
+                                    type: 'accept',
+                                    user: uname,
+                                    key: userObj.key
+                                });
+                            }
+                        }); // write file back to profile
+                    }
+                }); // read from profile.json
+            }); // signup listening
+        }); // sockets connection listening
     }
 }
 

@@ -1,8 +1,10 @@
-{
-    "profile":[
-        {
-            "username": "kevinbird61",
-            "passwd": "kevinbird61"
-        }
-    ]
-}
+[
+  {
+    "username": "kevinbird61",
+    "passwd": "kevinbird61"
+  },
+  {
+    "username": "kevinbird6161",
+    "passwd": "kevinbird61"
+  }
+]

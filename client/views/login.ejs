@@ -79,7 +79,7 @@ socket.on('login',function(msg){
     }
     else{
         document.getElementById('HelpBlock').className = 'w3-text-red form-text text-muted';
-        document.getElementById('HelpBlock').innerHTML = 'Error with username or passwd!';
+        document.getElementById('HelpBlock').innerHTML = msg.msg;
     }
 });
 // disconnect from server
