@@ -111,7 +111,8 @@ class WebSocket {
                         jsfs.writeFileSync(path.join(__dirname,'static','department',donation.dep+'.json'),data,{spaces: 4});
                         socket.emit('update',{
                             current: data.donate.current,
-                            target: data.donate.target
+                            target: data.donate.target,
+                            currency: data.donate.currency
                         });
                     }
                     else{

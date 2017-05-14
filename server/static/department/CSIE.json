@@ -46,8 +46,8 @@
         }
     ],
     "donate": {
-        "target": 10000,
-        "current": 3100,
+        "target": 100000,
+        "current": 25400,
         "currency": "NTD"
     }
 }
