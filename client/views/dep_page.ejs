@@ -4,6 +4,7 @@
     <% include ../elements/meta %>
     <% include ../elements/lib %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script> <!-- Socket.io lib -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <header>
     <!-- Navbar goes here -->
@@ -42,6 +43,8 @@
                 (<%= (content.donate.current/content.donate.target)*100 %>%)
             </div>
         </div>
+        <!-- Histogram of donation list -->
+        <div id="chart_div" class="w3-center" style="width:100%;"></div>
     </div>
     <p>
     <!-- Show the list of lecturer -->
@@ -54,6 +57,7 @@
                 <input type="hidden" id="a_content_<%= index %>" value="<%= content.article[index].content %>">
                 <input type="hidden" id="a_lecturer_<%= index %>" value="<%= content.article[index].lecturer %>">
                 <input type="hidden" id="a_img_<%= index %>" value="<%= content.article[index].img_url %>">
+                <input type="hidden" id="a_title_<%= index %>" value="<%= content.article[index].title %>">
                 <img src="<%= content.article[index].img_url %>" alt="Norway" onclick="Popout(<%= index %>)" style="width:100%" class="w3-hover-opacity">
                 <div class="w3-container w3-aqua w3-round-large">
                     <br>
@@ -83,6 +87,7 @@
         <span class="w3-button w3-black w3-xlarge w3-display-topright"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
         <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
             <h3 id="fs_name"></h3>
+            <input id="fs_title" type="hidden" value="">
             <img id="fs_img" class="w3-class" style="width:100%;">
             <br>
             <p>
@@ -102,6 +107,10 @@
                 </div>
             </div>
         </div>
+    </div>
+    <!-- verify Modal -->
+    <div id="fullscreen" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+
     </div>
 </body>
 <script>
@@ -133,34 +142,65 @@ function textchange(id){
         }
     }
 }
-// FullScreen display
-function Popout(index){
-    document.getElementById("fullscreen").style.display = "block";
-    document.getElementById("fs_name").innerHTML = document.getElementById('a_lecturer_'+index).value;
-    document.getElementById("fs_content").innerHTML = document.getElementById('a_content_'+index).value;
-    document.getElementById("fs_img").src = document.getElementById('a_img_'+index).value;
-}
-
 // enable socket io
 const socket = new io();
 socket.emit('join',{
     room_name: "Donation usage"
 });
-// Donate
+// FullScreen display
+function Popout(index){
+    document.getElementById("fullscreen").style.display = "block";
+    document.getElementById("fs_name").innerHTML = document.getElementById('a_lecturer_'+index).value;
+    document.getElementById("fs_content").innerHTML = document.getElementById('a_content_'+index).value;
+    document.getElementById("fs_title").value = document.getElementById('a_title_'+index).value;
+    document.getElementById("fs_img").src = document.getElementById('a_img_'+index).value;
+    // send click event
+    socket.emit('click',{
+        dep: <%- JSON.stringify(dep_type) %>,
+        lecturer: document.getElementById("fs_name").innerHTML,
+        title: document.getElementById("fs_title").value
+    });
+
+}
+// Donate page
+// FIXME: open another modal to verify the donator
 function donate(dollar,currency){
     socket.emit('donate',{
         dep: <%- JSON.stringify(dep_type) %>,
+        title: document.getElementById('fs_title').value,
+        lecturer: document.getElementById("fs_name").innerHTML,
         dollar: dollar,
         currency: currency
     });
 }
-
+// Update donation part
 socket.on('update',function(dollar){
     // Update the progress bar's value
     document.getElementById('donation').style = 'width:'+(dollar.current/dollar.target)*100+'%';
     document.getElementById('donation').innerHTML = '(' + ((dollar.current/dollar.target)*100) + '%)';
     document.getElementById('donation_text').innerHTML = dollar.current + ' ' + dollar.currency + ' / ' + dollar.target + ' ' + dollar.currency;
-})
+    updateChart(dollar.sorted_contribution);
+});
 
+// Histogram part
+google.charts.load("current", {packages:["corechart"]});
+google.charts.setOnLoadCallback(drawChart);
+var PieChart;
+function drawChart() {
+    var data = google.visualization.arrayToDataTable(<%- JSON.stringify(sorted_contribution) %>);
+    var options = {
+      title: 'Lecturer name, and their contribution to us.'
+    };
+    PieChart = new google.visualization.PieChart(document.getElementById('chart_div'));
+    PieChart.draw(data, options);
+}
+function updateChart(raw_array){
+    var options = {
+      title: 'Lecturer name, and their contribution to us.'
+    };
+    //var chart = document.getElementById('chart_div');
+    var data = google.visualization.arrayToDataTable(raw_array);
+    PieChart.draw(data,options);
+}
 </script>
 </html>

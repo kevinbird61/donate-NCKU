@@ -4,6 +4,8 @@ const rs = require('randomstring');
 const jsfs = require('jsonfile');
 const path = require('path');
 
+const { MongoDBService } = require('./dbmodule');
+
 // Websocket usage of whole system
 class WebSocket {
     init(server){
@@ -109,17 +111,46 @@ class WebSocket {
                             console.log("Reach the target!");
                         }
                         jsfs.writeFileSync(path.join(__dirname,'static','department',donation.dep+'.json'),data,{spaces: 4});
-                        socket.emit('update',{
-                            current: data.donate.current,
-                            target: data.donate.target,
-                            currency: data.donate.currency
+                        // update donation contribution table
+                        MongoDBService.article_donate(donation.dep,donation.lecturer,donation.dollar,donation.currency, (err,msg) => {
+                            if(err)
+                                console.log(msg);
+                            else {
+                                console.log(msg);
+                            }
+                        });
+                        MongoDBService.donate_m.find({dep:donation.dep}).sort('-donation').exec(function(err,array){
+                            // rearrange array
+                            var rearrange = [ ['From which lecturer','accumulate donation'] ];
+                            for(var index in array){
+                                var new_obj = [ array[index].lecturer,array[index].donation ];
+                                rearrange.push(new_obj);
+                            }
+                            // emit update message
+                            socket.emit('update',{
+                                current: data.donate.current,
+                                target: data.donate.target,
+                                currency: data.donate.currency,
+                                sorted_contribution: rearrange
+                            });
                         });
                     }
                     else{
-                        // TODO
+                        // TODO: different value
                     }
                 }); // read department json
             }); // donation service
+            // "click"
+            socket.on("click",function(click_event){
+                MongoDBService.article_click(click_event.dep,click_event.lecturer,click_event.title, (err,msg) => {
+                    if(err)
+                        console.log(msg);
+                    else {
+                        console.log(msg);
+                    }
+                })
+            });
+
         }); // sockets connection listening
     }
 }

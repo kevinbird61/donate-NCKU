@@ -8,6 +8,7 @@ const app = express();
 const { IntroService } = require('./server/intro');
 const { WebSocket } = require('./server/ws');
 const { Manager } = require('./server/manager');
+const { MongoDBService } = require('./server/dbmodule');
 
 /* Setting static directory */
 app.use(express.static('client/elements'));

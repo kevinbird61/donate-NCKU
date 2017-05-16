@@ -1,6 +1,6 @@
 const path = require('path')
 const jsfs = require('jsonfile');
-
+const { MongoDBService } = require('./dbmodule');
 /* dealing with intro service */
 class IntroService {
     init(app){
@@ -45,15 +45,25 @@ class IntroService {
         // Get the content of this department
         // FIXME: need to use database instead of json format to store this. But current use the json.
         var dep_detail = jsfs.readFileSync(path.join(__dirname,'static','department',type+'.json'));
-
-        res.render('dep_page',{
-            title: "Department of "+type,
-            url: req.url,
-            link: linkobj.dep_page,
-            type: language_type,
-            dep_type: type,
-            currency: "NTD",
-            content: dep_detail
+        // Fetch contribution
+        MongoDBService.donate_m.find({dep:type}).sort('-donation').exec(function(err,array){
+            // rearrange array
+            var rearrange = [ ['From which lecturer','accumulate donation'] ];
+            for(var index in array){
+                var new_obj = [ array[index].lecturer,array[index].donation ];
+                rearrange.push(new_obj);
+            }
+            // render the page
+            res.render('dep_page',{
+                title: "Department of "+type,
+                url: req.url,
+                link: linkobj.dep_page,
+                type: language_type,
+                dep_type: type,
+                currency: "NTD",
+                content: dep_detail,
+                sorted_contribution: rearrange
+            });
         });
     }
 }

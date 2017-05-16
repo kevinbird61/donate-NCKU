@@ -23,6 +23,7 @@
         "request": "^2.7.0",
         "randomstring": "^1.1.5",
         "moment": "^2.17.1",
+        "mongoose": "^4.9.9",
         "sjcl": "^1.0.6",
         "socket.io": "^1.4.5"
     }
