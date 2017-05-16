@@ -117,22 +117,22 @@ class WebSocket {
                                 console.log(msg);
                             else {
                                 console.log(msg);
+                                MongoDBService.donate_m.find({dep:donation.dep}).sort('-donation').exec(function(err,array){
+                                    // rearrange array
+                                    var rearrange = [ ['From which lecturer','accumulate donation'] ];
+                                    for(var index in array){
+                                        var new_obj = [ array[index].lecturer,array[index].donation ];
+                                        rearrange.push(new_obj);
+                                    }
+                                    // emit update message
+                                    socket.emit('update',{
+                                        current: data.donate.current,
+                                        target: data.donate.target,
+                                        currency: data.donate.currency,
+                                        sorted_contribution: rearrange
+                                    });
+                                });
                             }
-                        });
-                        MongoDBService.donate_m.find({dep:donation.dep}).sort('-donation').exec(function(err,array){
-                            // rearrange array
-                            var rearrange = [ ['From which lecturer','accumulate donation'] ];
-                            for(var index in array){
-                                var new_obj = [ array[index].lecturer,array[index].donation ];
-                                rearrange.push(new_obj);
-                            }
-                            // emit update message
-                            socket.emit('update',{
-                                current: data.donate.current,
-                                target: data.donate.target,
-                                currency: data.donate.currency,
-                                sorted_contribution: rearrange
-                            });
                         });
                     }
                     else{
