@@ -109,8 +109,8 @@
         </div>
     </div>
     <!-- verify Modal -->
-    <div id="fullscreen" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
-
+    <div id="verify" class="w3-modal w3-black" style="padding-top:0">
+        <% include ../elements/donate_info %>
     </div>
 </body>
 <script>
@@ -165,24 +165,33 @@ function Popout(index){
 // Donate page
 // FIXME: open another modal to verify the donator
 function donate(dollar,currency){
+    document.getElementById("verify").style.display = "block";
+    document.getElementById("donate_dollar").value = dollar;
+    document.getElementById("donate_currency").value = currency;
+}
+// Verified donation
+function goDonate(){
     socket.emit('donate',{
         dep: <%- JSON.stringify(dep_type) %>,
         title: document.getElementById('fs_title').value,
         lecturer: document.getElementById("fs_name").innerHTML,
-        dollar: dollar,
-        currency: currency
+        dollar: parseInt(document.getElementById("donate_dollar").value),
+        currency: document.getElementById("donate_currency").value
     });
+    document.getElementById("verify").style.display = "none";
 }
+
 // Update donation part
 socket.on('update',function(dollar){
     // Update the progress bar's value
-    document.getElementById('donation').style = 'width:'+(dollar.current/dollar.target)*100+'%';
-    document.getElementById('donation').innerHTML = '(' + ((dollar.current/dollar.target)*100) + '%)';
-    document.getElementById('donation_text').innerHTML = dollar.current + ' ' + dollar.currency + ' / ' + dollar.target + ' ' + dollar.currency;
+    document.getElementById('donation').style = (dollar.current >= dollar.target) ? 'width:100%' : 'width:'+(dollar.current/dollar.target)*100+'%';
+    document.getElementById('donation').innerHTML = (dollar.current >= dollar.target) ? '(100%)' : '(' + ((dollar.current/dollar.target)*100) + '%)';
+    document.getElementById('donation_text').innerHTML = (dollar.current >= dollar.target) ? 'Now we reach our goal ! Cheer!' : dollar.current + ' ' + dollar.currency + ' / ' + dollar.target + ' ' + dollar.currency;
+    // Update PieChart
     updateChart(dollar.sorted_contribution);
 });
 
-// Histogram part
+// Data visualization part
 google.charts.load("current", {packages:["corechart"]});
 google.charts.setOnLoadCallback(drawChart);
 var PieChart;
