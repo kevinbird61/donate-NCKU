@@ -13,11 +13,19 @@ class IntroService {
         var linkobj = jsfs.readFileSync(path.join(__dirname,'static','navbar_link.json'));
         var type = (req.query.type == undefined) ? 'TW' : req.query.type;
 
-        res.render('index',{
-            title: "Donate-NCKU",
-            url: req.url,
-            link: linkobj.index,
-            type: type
+        // Fetch the click information (limit with 2 entries)
+        MongoDBService.click_m.find({}).sort('-click').limit(2).exec(function(err,array){
+            if(err)
+                console.log("Fetch click from database error");
+            else{
+                res.render('index',{
+                    title: "Donate-NCKU",
+                    url: req.url,
+                    link: linkobj.index,
+                    type: type,
+                    sorted_click: array
+                });
+            }
         });
     }
     about(req,res){
