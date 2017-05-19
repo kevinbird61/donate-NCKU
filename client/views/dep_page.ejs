@@ -142,6 +142,12 @@ function textchange(id){
         }
     }
 }
+
+// Close div
+function close(id){
+    document.getElementById(id).style.display = 'none';
+}
+
 // enable socket io
 const socket = new io();
 socket.emit('join',{

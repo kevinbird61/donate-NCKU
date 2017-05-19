@@ -20,6 +20,7 @@ class IntroService {
             else{
                 res.render('index',{
                     title: "Donate-NCKU",
+                    hotest_video: "https://www.youtube.com/embed/e-x1l53ZEKk?autoplay=1",
                     url: req.url,
                     link: linkobj.index,
                     type: type,
