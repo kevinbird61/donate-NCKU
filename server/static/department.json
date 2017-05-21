@@ -4,13 +4,13 @@
             "TW": "資訊系",
             "US": "CSIE",
             "loc": "成功校區",
-            "img": "csie.png"
+            "img": "http://i.imgur.com/BuOKyiG.png"
         },
         {
             "TW": "電機系",
             "US": "EE",
             "loc": "自強校區",
-            "img": "csie.png"
+            "img": "http://i.imgur.com/BuOKyiG.png"
         }
     ]
 }

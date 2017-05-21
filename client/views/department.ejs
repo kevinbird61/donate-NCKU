@@ -42,7 +42,7 @@ body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <% for(var index in department){ %>
             <div class="w3-third w3-container" id="<%= department[index].US %>">
                 <!-- Custom department banner here -->
-                <img src="<%= department[index].img >" alt="Norway" onclick="gotoDep('<%= department[index].US %>')" style="width:100%" class="w3-hover-opacity">
+                <img src="<%= department[index].img %>" alt="Norway" onclick="gotoDep('<%= department[index].US %>')" style="width:100%" class="w3-hover-opacity">
                 <div class="w3-container w3-khaki w3-round-large">
                     <br>
                     <p><b><%= department[index].US %></b></p>
