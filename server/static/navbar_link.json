@@ -68,6 +68,51 @@
             }
         ]
     },
+    "about":{
+        "left": [
+            {
+                "type": "pure_link",
+                "link": "/department",
+                "name": {
+                    "TW": "選擇系所",
+                    "US": "Department"
+                }
+            }
+        ],
+        "right": [
+            {
+                "type": "pure_link",
+                "link": "/login",
+                "name": {
+                    "TW": "登入/註冊",
+                    "US": "Sign In/Sign Up"
+                }
+            },
+            {
+                "type": "dropdown",
+                "name": {
+                    "TW": "語言選擇",
+                    "US": "Language"
+                },
+                "sublink": [
+                    {
+                        "link": "?type=TW",
+                        "name":{
+                            "TW":"繁體中文",
+                            "US":"Traditional Chinese"
+                        }
+                    },
+                    {
+                        "link": "?type=US",
+                        "name":{
+                            "TW":"英語",
+                            "US":"English"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
     "dep_page":{
         "left": [
             {

@@ -1,38 +1,78 @@
 <div class="container">
+    <!-- Purpose -->
+    <h2> 為何有了 Donate-NCKU? </h2>
+    <p> 聚集眾人的力量，來完成更大的事 </p>
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-triangle-right"></span> 關於 Donate-NCKU
+            </div>
+            <div class="panel-body">
+                <ul>
+                    <li> Why donate-NCKU? </li>
+                        <ol>
+                            <li> 聚集眾人的力量 </li>
+                            <li> 透過講者的群眾魅力來回饋 </li>
+                        </ol>
+                    <hr>
+                    <li> 如何讓觀眾願意捐贈? </li>
+                        <ul>
+                            <li> 請講者分享個人的心路歷程 </li>
+                            <li> 進而使得觀眾(像是普通大學生)小額捐贈該系 </li>
+                            <li> 或是其他有資源且有意願的捐贈者 </li>
+                        </ul>
+                    <hr>
+                    <li> 各院系能夠獲得一些資助 </li>
+                        <ul>
+                            <li> 增進良性循環! </li>
+                        </ul>
+                    <hr>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr>
     <h2> 關於我們 </h2>
     <p> donate-NCKU 團隊以及 donate-NCKU 的主要目標 </p>
     <!-- Team group -->
     <div class="panel-group">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <span class="glyphicon glyphicon-triangle-right"></span> 團隊成員
+                <span class="glyphicon glyphicon-triangle-right"></span> 團隊陣容
             </div>
             <div class="panel-body">
                 <div class="row">
                     <!-- Block of each person -->
                     <% for(var index in team.member){ %>
-                        <div class="col-md-4 col-xs-4 col-sm-4 text-center">
-                            <!-- img here -->
-                            <img id="driver_img" src="<%= team.member[index].img %>" class="img-thumbnail" alt="driver">
+                        <div class="col-md-12 col-xs-12 col-sm-12 well">
+                            <div class="col-md-4 col-xs-4 col-sm-4 text-center">
+                                <!-- img here -->
+                                <img src="<%= team.member[index].img %>" class="img-thumbnail" alt="team-member">
+                            </div>
+                            <div class="col-md-8 col-xs-8 col-sm-8 align-middle">
+                                <!-- text info here -->
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span><strong> 名稱 </strong></span>
+                                    <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" value="<%= team.member[index].name %>" readonly="true">
+                                </div>
+                                <br>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span><strong> 職稱 </strong></span>
+                                    <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" value="<%= team.member[index].job %>" readonly="true">
+                                </div>
+                                <br>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span><strong> 信箱 </strong></span>
+                                    <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" value="<%= team.member[index].email %>" readonly="true">
+                                </div>
+                                <br>
+                            </div>
                         </div>
-                        <div class="col-md-8 col-xs-8 col-sm-8 text-center">
-                            <!-- text info here -->
-                            <label class="control-label col-md-4 col-xs-4 col-sm-4" for="name"> 名稱: </label>
-                            <div class="col-md-8 col-xs-8 col-sm-8">
-                                <p class="form-control-static"><%= team.member[index].name %></p>
-                            </div>
-                            <label class="control-label col-md-4 col-xs-4 col-sm-4" for="name"> 職稱: </label>
-                            <div class="col-md-8 col-xs-8 col-sm-8">
-                                <p class="form-control-static"><%= team.member[index].job %></p>
-                            </div>
-                            <label class="control-label col-md-4 col-xs-4 col-sm-4" for="name"> 信箱: </label>
-                            <div class="col-md-8 col-xs-8 col-sm-8">
-                                <p class="form-control-static"><%= team.member[index].email %></p>
-                            </div>
-                        </div>
+                        <hr>
                     <% } %>
                 </div>
             </div>
         </div>
     </div>
+
 </div>

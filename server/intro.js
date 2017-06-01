@@ -40,7 +40,7 @@ class IntroService {
         res.render('about',{
             title: "About donate-NCKU",
             url: req.url,
-            link: linkobj.index,
+            link: linkobj.about,
             type: type,
             team: team
         });
