@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default">
-    <div class="container-fluid">
+    <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -16,7 +16,7 @@
             <ul class="nav navbar-nav">
                 <!-- Put all link in here (Left) -->
                 <% for(var index in link.left){ %>
-                    <% if(link.left[index].type == "pure_link"){ %>
+                    <% if(link.left[index].type == "pure_link" || link.left[index].type == "inner_link"){ %>
                         <% if( type == 'TW'){ %>
                             <li><a href="<%= link.left[index].link %>"><%= link.left[index].name.TW %></a></li>
                         <% } else if( type == 'US'){ %>
@@ -57,7 +57,7 @@
             <!-- Right -->
             <ul class="nav navbar-nav navbar-right">
                 <% for(var index in link.right){ %>
-                    <% if(link.right[index].type == "pure_link"){ %>
+                    <% if(link.right[index].type == "pure_link" || link.right[index].type == "inner_link"){ %>
                         <% if( type == 'TW'){ %>
                             <li><a href="<%= link.right[index].link %>"><%= link.right[index].name.TW %></a></li>
                         <% } else if( type == 'US'){ %>

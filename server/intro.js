@@ -32,7 +32,18 @@ class IntroService {
         });
     }
     about(req,res){
-        res.end("About page coming soon!");
+        // res.end("About page coming soon!");
+        var linkobj = jsfs.readFileSync(path.join(__dirname,'static','navbar_link.json'));
+        var team = jsfs.readFileSync(path.join(__dirname,'static','team.json'));
+        var type = (req.query.type == undefined) ? 'TW' : req.query.type;
+
+        res.render('about',{
+            title: "About donate-NCKU",
+            url: req.url,
+            link: linkobj.index,
+            type: type,
+            team: team
+        });
     }
     department(req,res){
         var depobj = jsfs.readFileSync(path.join(__dirname,'static','department.json'));

@@ -1,0 +1,19 @@
+html,body {
+    height: 100%;
+}
+.carousel,.item,.active{
+    height:100%;
+}
+.carousel-inner {
+    background-image: url("http://i.imgur.com/rm4owNE.png");
+    background-color: #000000;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height:100%;
+}
+.carousel-inner > .item > img {
+    margin: 0 auto;
+}
+.navbar {
+    margin: 0 auto;
+}

@@ -1,0 +1,15 @@
+{
+    "member":[
+        {
+            "img": "team/cyu.jpg",
+            "name": "瞿旭民",
+            "job": "Software Engineer",
+            "email": "kevinbird61@gmail.com"
+        },{
+            "img": "team/fake.jpg",
+            "name": "海濤",
+            "job": "法師",
+            "email": "1234567@gmail.com"
+        }
+    ]
+}

@@ -1,0 +1,38 @@
+<div class="container">
+    <h2> 關於我們 </h2>
+    <p> donate-NCKU 團隊以及 donate-NCKU 的主要目標 </p>
+    <!-- Team group -->
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-triangle-right"></span> 團隊成員
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <!-- Block of each person -->
+                    <% for(var index in team.member){ %>
+                        <div class="col-md-4 col-xs-4 col-sm-4 text-center">
+                            <!-- img here -->
+                            <img id="driver_img" src="<%= team.member[index].img %>" class="img-thumbnail" alt="driver">
+                        </div>
+                        <div class="col-md-8 col-xs-8 col-sm-8 text-center">
+                            <!-- text info here -->
+                            <label class="control-label col-md-4 col-xs-4 col-sm-4" for="name"> 名稱: </label>
+                            <div class="col-md-8 col-xs-8 col-sm-8">
+                                <p class="form-control-static"><%= team.member[index].name %></p>
+                            </div>
+                            <label class="control-label col-md-4 col-xs-4 col-sm-4" for="name"> 職稱: </label>
+                            <div class="col-md-8 col-xs-8 col-sm-8">
+                                <p class="form-control-static"><%= team.member[index].job %></p>
+                            </div>
+                            <label class="control-label col-md-4 col-xs-4 col-sm-4" for="name"> 信箱: </label>
+                            <div class="col-md-8 col-xs-8 col-sm-8">
+                                <p class="form-control-static"><%= team.member[index].email %></p>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

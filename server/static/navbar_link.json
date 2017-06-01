@@ -16,6 +16,14 @@
                     "TW": "選擇系所",
                     "US": "Department"
                 }
+            },
+            {
+                "type": "inner_link",
+                "link": "#hotest",
+                "name": {
+                    "TW": "熱門項目",
+                    "US": "Hotest!"
+                }
             }
         ],
         "right": [
