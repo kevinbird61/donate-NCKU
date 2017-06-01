@@ -3,14 +3,34 @@
     <!-- Template -->
     <% include ../elements/meta %>
     <% include ../elements/lib %>
+    <!-- custom css -->
+    <style>
+    html,body {
+        height:100%;
+    }
+    .carousel,.item,.active{
+        height:100%;
+    }
+    .carousel-inner {
+        background-image: url("logo-wrapper2-2.png");
+        background-color: #000000;
+        background-position: center center;
+        background-repeat: no-repeat;
+        height:100%;
+    }
+    .carousel-inner > .item > img {
+        margin: 0 auto;
+    }
+    </style>
 </head>
 <header>
     <!-- Navbar goes here -->
     <% include ../elements/navbar_template %>
 </header>
 <body>
+    <!-- Landing page - Carousel -->
+    <% include ../elements/landing %>
     <!-- Debug : show the raw ranking of article -->
     <% include ../elements/index_hotest %>
 </body>
-
 </html>

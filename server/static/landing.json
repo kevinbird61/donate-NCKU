@@ -1,0 +1,19 @@
+{
+    "slogan":[
+        {
+            "title": "Donate-NCKU First Slogan",
+            "detail": "Modify your slogan here"
+        },
+        {
+            "title": "Donate-NCKU First Slogan",
+            "detail": "Modify your slogan here"
+        },
+        {
+            "title": "Source code available!",
+            "detail": "Join our team now!",
+            "link": true,
+            "link_href": "https://github.com/kevinbird61/donate-NCKU",
+            "link_name": "Go and See !"
+        }
+    ]
+}

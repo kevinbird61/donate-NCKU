@@ -11,6 +11,7 @@ class IntroService {
     }
     index(req,res){
         var linkobj = jsfs.readFileSync(path.join(__dirname,'static','navbar_link.json'));
+        var content = jsfs.readFileSync(path.join(__dirname,'static','landing.json'));
         var type = (req.query.type == undefined) ? 'TW' : req.query.type;
 
         // Fetch the click information (limit with 2 entries)
@@ -21,6 +22,7 @@ class IntroService {
                 res.render('index',{
                     title: "Donate-NCKU",
                     hotest_video: "https://www.youtube.com/embed/e-x1l53ZEKk?autoplay=1",
+                    landing: content,
                     url: req.url,
                     link: linkobj.index,
                     type: type,
