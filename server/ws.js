@@ -28,6 +28,7 @@ class WebSocket {
                 let uname = sjcl.decrypt(userObj.key,userObj.username);
                 let upass = sjcl.decrypt(userObj.key,userObj.passwd);;
                 // FIXME: using database to store instead json file
+
                 jsfs.readFile(path.join(__dirname,'static','user','profile.json'),(err,data) => {
                     if(err)
                         console.log("Read user profile error!");

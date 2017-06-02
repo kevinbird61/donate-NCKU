@@ -8,6 +8,7 @@ class IntroService {
         app.get('/about',this.about);
         app.get('/department',this.department);
         app.get('/dep_page',this.dep_page);
+        app.get('/article',this.article);
     }
     index(req,res){
         var linkobj = jsfs.readFileSync(path.join(__dirname,'static','navbar_link.json'));
@@ -86,6 +87,52 @@ class IntroService {
                 content: dep_detail,
                 sorted_contribution: rearrange
             });
+            // Find dep_detail (by type)
+            /*MongoDBService.article_m.find({dep:type},function(err,dep_detail){
+                // render the page
+                res.render('dep_page',{
+                    title: "Department of "+type,
+                    url: req.url,
+                    link: linkobj.dep_page,
+                    type: language_type,
+                    dep_type: type,
+                    currency: "NTD",
+                    content: dep_detail,
+                    sorted_contribution: rearrange
+                });
+            });*/
+        });
+    }
+    article(req,res){
+        var linkobj = jsfs.readFileSync(path.join(__dirname,'static','navbar_link.json'));
+        var article_type = req.query.a_type; 
+        var type = (req.query.type == undefined) ? 'TW' : req.query.type;
+        // type,lecturer,title,dep
+        // Update: using db to store each article
+        MongoDBService.find_article(req.query.dep,req.query.lecturer,req.query.title,function(err,msg_data){
+            if(err){
+                console.log("[Error/NotFound]: "+msg_data);
+                // error page
+                res.render('article',{
+                    title: "縮哩~找不到該文章",
+                    link: linkobj.about,
+                    type: 'TW',
+                    url: req.url,
+                    dep_type: req.query.dep,
+                    content: undefined
+                });
+            }
+            else {
+                // get msg_data as find article
+                res.render('article',{
+                    title: msg_data.title,
+                    link: linkobj.about,
+                    url: req.url,
+                    type: type,
+                    dep_type: req.query.dep,
+                    content: msg_data
+                });
+            }
         });
     }
 }

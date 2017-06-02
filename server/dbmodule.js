@@ -7,23 +7,123 @@ class MongoDBService {
         mongoose.connect('mongodb://localhost/donateNCKU');
         this.donateDB = mongoose.connection;
         // define schema
+        // Donation record here
         this.donateSchema = mongoose.Schema({
             dep: String,
             lecturer: String,
             donation: Number,
             currency: String
         });
-
+        // Click record here
         this.clickSchema = mongoose.Schema({
             dep: String,
             lecturer: String,
             title: String,
             click: Number
         });
+        // Article maintain
+        this.articleSchema = mongoose.Schema({
+            dep: String,
+            lecturer: String,
+            title: String,
+            content: String,
+            about: String,
+            img_url: String
+        });
+        // Define user schema
+        this.userSchema = mongoose.Schema({
+            username: String,
+            passwd: String
+        });
 
         // define schema model
         this.donate_m = mongoose.model('donate_m',this.donateSchema);
         this.click_m = mongoose.model('click_m',this.clickSchema);
+        this.article_m = mongoose.model('article_m',this.articleSchema);
+        this.user_m = mongoose.model('user_m',this.userSchema);
+    }
+    add_user(username,passwd,callback){
+        var userModel = this.user_m;
+    }
+    add_article(dep,lecturer,title,content,callback){
+        var articleModel = this.article_m;
+        this.article_m.findOne({lecturer:lecturer,dep:dep,title:title},'dep lecturer lecturer content',function(err,article){
+            if(err){
+                console.log("Article-findOne error.");
+                callback(1,"Article-findOne error.");
+            }
+            else {
+                if(article == null){
+                    // not found , then create one
+                    let newarticle = new articleModel({dep: dep,lecturer: lecturer,title: title,content: content,about: "null",img_url: "http://i.imgur.com/RTx4hLq.jpg"});
+                    newarticle.save(function(err,newarticle){
+                        if(err){
+                            console.log("Error with article save:"+err);
+                            callback(1,err);
+                        }
+                        else {
+                            console.log("Successfully save article");
+                            callback(0,"create article");
+                        }
+                    });
+                }
+                else{
+                    // exist , update/do nothing
+                    callback(1,"exist");
+                }
+            }
+        });
+    }
+    update_article(dep,lecturer,title,content,about,img_url,callback){
+        var articleModel = this.article_m;
+        this.article_m.findOne({lecturer:lecturer,dep:dep,title:title},'dep lecturer lecturer content',function(err,article){
+            if(err){
+                console.log("Article-findOne error.");
+                callback(1,"Article-findOne error.");
+            }
+            else {
+                if(article == null){
+                    // not found , then create one
+                    callback(1,"not found");
+                }
+                else{
+                    // exist , update
+                    article.title = title;
+                    article.content = content;
+                    article.about = about;
+                    article.img_url = img_url;
+                    article.save(function(err,article){
+                        if(err){
+                            console.log("Error with article update: "+err);
+                            callback(1,err);
+                        }
+                        else{
+                            console.log("Successfully update article");
+                            callback(0,"update");
+                        }
+                    });
+                }
+            }
+        });
+    }
+    find_article(dep,lecturer,title,callback){
+        var articleModel = this.article_m;
+        this.article_m.findOne({lecturer:lecturer,dep:dep,title:title},'dep lecturer lecturer content',function(err,article){
+            if(err){
+                console.log("Article-findOne error.");
+                callback(1,"Article-findOne error.");
+            }
+            else {
+                if(article == null){
+                    // not found , then create one
+                    callback(1,"not found");
+                }
+                else{
+                    // find it
+                    callback(0,article);
+                }
+            }
+        });
     }
     article_donate(dep,lecturer,donation,currency,callback){
         var donationModel = this.donate_m;

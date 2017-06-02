@@ -58,7 +58,10 @@
                 <input type="hidden" id="a_lecturer_<%= index %>" value="<%= content.article[index].lecturer %>">
                 <input type="hidden" id="a_img_<%= index %>" value="<%= content.article[index].img_url %>">
                 <input type="hidden" id="a_title_<%= index %>" value="<%= content.article[index].title %>">
-                <img src="<%= content.article[index].img_url %>" alt="Norway" onclick="Popout(<%= index %>)" style="width:100%" class="w3-hover-opacity">
+                <!-- Using Modal -->
+                <!-- <img src="<%= content.article[index].img_url %>" alt="Norway" onclick="Popout(<%= index %>)" style="width:100%" class="w3-hover-opacity"> -->
+                <!-- Using new page -->
+                <img src="<%= content.article[index].img_url %>" alt="Norway" onclick="Goto(<%= index %>)" style="width:100%" class="w3-hover-opacity">
                 <div class="w3-container w3-aqua w3-round-large">
                     <br>
                     <p><b><%= content.article[index].lecturer %></b>-<%= content.article[index].title %></p>
@@ -168,6 +171,15 @@ function Popout(index){
     });
 
 }
+// Goto new page
+function Goto(index){
+    // Go to new page
+    window.location.replace('/article'+'?a_type=article&lecturer='+document.getElementById('a_lecturer_'+index).value+
+                            '&title='+document.getElementById('a_title_'+index).value+
+                            '&dep='+<%- JSON.stringify(dep_type) %>
+                        );
+}
+
 // Donate page
 // FIXME: open another modal to verify the donator
 function donate(dollar,currency){

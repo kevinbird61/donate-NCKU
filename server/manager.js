@@ -1,5 +1,6 @@
 const path = require('path')
 const jsfs = require('jsonfile');
+const { MongoDBService } = require('./dbmodule');
 
 /* Interact with users */
 class Manager {
@@ -118,6 +119,30 @@ class Manager {
                     return;
                 }
             }
+            // Find target article to modify
+            /*MongoDBService.find_article(dep,lecturer,title,function(err,msg_data){
+                if(err){
+                    console.log("[Error/NotFound]: "+msg_data);
+                    // error page
+                    res.end("[Error/NotFound]: "+msg_data);
+                }
+                else {
+                    // get msg_data as find article
+                    res.render('edit',{
+                        title: "Modify Article page",
+                        page_type: "modify_article",
+                        user: lecturer,
+                        url: req.url,
+                        dep: depobj,
+                        thisdep: dep,
+                        thistitle: title,
+                        thiscontent: msg_data.content,
+                        link: linkobj.edit_page,
+                        type: ltype
+                    });
+                    return;
+                }
+            });*/
             res.end("Error occur!");
         }
         else if(type == 'video'){
@@ -137,7 +162,7 @@ class Manager {
         console.log(edit_type+';'+title+';'+dep+';'+lecturer+';'+content);
         if(edit_type == "new_article"){
             // Store back into specific department
-            var dep_detail = jsfs.readFileSync(path.join(__dirname,'static','department',dep+'.json'));
+            /*var dep_detail = jsfs.readFileSync(path.join(__dirname,'static','department',dep+'.json'));
             // check whether it is duplicated or not
             for(var index in dep_detail.article){
                 if(dep_detail.article[index].lecturer == lecturer && dep_detail.article[index].title == title){
@@ -162,10 +187,23 @@ class Manager {
                 else{
                     res.redirect('/department');
                 }
+            });*/
+            // Using db to add new article
+            MongoDBService.add_article(dep,lecturer,title,content,"null","http://i.imgur.com/RTx4hLq.jpg",function(err,msg_data){
+                if(err){
+                    console.log("[Error/Exist]: "+msg_data);
+                    // error page
+                    res.end("[Error/Exist]: "+msg_data);
+                }
+                else {
+                    console.log("Add Successfully!");
+                    // FIXME: usign an redirect page instead
+                    res.end("Add article Successfully!");
+                }
             });
         }
         else if(edit_type == "modify_article"){
-            var dep_detail = jsfs.readFileSync(path.join(__dirname,'static','department',dep+'.json'));
+            /*var dep_detail = jsfs.readFileSync(path.join(__dirname,'static','department',dep+'.json'));
             // check whether it is duplicated or not
             for(var index in dep_detail.article){
                 if(dep_detail.article[index].lecturer == lecturer && dep_detail.article[index].title == title){
@@ -182,7 +220,20 @@ class Manager {
                     return;
                 }
             }
-            res.end("Modify not found. Cause error !");
+            res.end("Modify not found. Cause error !");*/
+            // Using db to update new article
+            MongoDBService.add_article(dep,lecturer,title,content,"null","http://i.imgur.com/RTx4hLq.jpg",function(err,msg_data){
+                if(err){
+                    console.log("[Error/Not found]: "+msg_data);
+                    // error page
+                    res.end("[Error/Not found]: "+msg_data);
+                }
+                else {
+                    console.log("Update Successfully!");
+                    // FIXME: usign an redirect page instead
+                    res.end("Update Successfully!");
+                }
+            });
         }
     }
 }
