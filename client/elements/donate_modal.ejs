@@ -10,7 +10,62 @@
             </div>
             <!-- Main Content goes here -->
             <div class="modal-body">
-
+                <!-- Panel here -->
+                <div class="col-md-12 col-xs-12 col-sm-12">
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <span class="glyphicon glyphicon-triangle-right"></span> 關於捐贈的原則
+                            </div>
+                            <div class="panel-body">
+                                <ul>
+                                    <li> 捐贈用途 </li>
+                                        <ol>
+                                            <li> (待補充) </li>
+                                            <li> (待補充) </li>
+                                        </ol>
+                                    <li> 捐贈方式 </li>
+                                        <ol>
+                                            <li> (待補充) </li>
+                                            <li> (待補充) </li>
+                                        </ol>
+                                    <li> 開立證明 </li>
+                                        <ol>
+                                            <li> (待補充) </li>
+                                            <li> (待補充) </li>
+                                        </ol>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Donate amount selection -->
+                <div class="col-md-12 col-xs-12 col-sm-12">
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <span class="glyphicon glyphicon-triangle-right"></span> 捐贈手續
+                            </div>
+                            <div class="panel-body">
+                                <!-- 捐贈資訊 -->
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span><strong> 捐贈者 </strong></span>
+                                <input id="donator" type="text" class="form-control" placeholder="填上您的大名" aria-describedby="basic-addon1">
+                                <hr>
+                                <span class="input-group-addon"><i class="fa fa-university" aria-hidden="true"></i><strong> 銀行帳號/線上支付 </strong></span>
+                                <input id="bank" type="text" class="form-control" placeholder="填上您的銀行行號 or 線上支付號" aria-describedby="basic-addon1">
+                                <hr>
+                                <span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i><strong> 捐獻金額 </strong></span>
+                                <input id="donate_dollar" type="text" class="form-control" placeholder="填上您想要捐獻的金額" aria-describedby="basic-addon1">
+                                <hr>
+                                <span class="input-group-addon"><i class="fa fa-money" aria-hidden="true"></i><strong> 使用貨幣 </strong></span>
+                                <input id="donate_currency" type="text" class="form-control" placeholder="填上捐獻使用的貨幣種類(Ex: NTD, USD...)" aria-describedby="basic-addon1">
+                                <hr>
+                                <button type="button" class="btn btn-success btn-lg btn-block" onclick="donateConfirm()">確認送出</button>
+                                <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal">重新填寫</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- Info box -->
             <div class="modal-footer">

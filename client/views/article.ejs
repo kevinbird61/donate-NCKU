@@ -3,6 +3,7 @@
     <!-- Template -->
     <% include ../elements/meta %>
     <% include ../elements/lib %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script> <!-- Socket.io lib -->
     <!-- custom css -->
 </head>
 <header>
@@ -27,9 +28,9 @@
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span><strong> 講者 </strong></span>
                             <% if(content == undefined){ %>
-                            <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" value="查無講者" readonly="true">
+                            <input id="fs_name" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" value="查無講者" readonly="true">
                             <% }else{ %>
-                            <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" value="<%= content.lecturer %>" readonly="true">
+                            <input id="fs_name" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" value="<%= content.lecturer %>" readonly="true">
                             <% } %>
                         </div>
                     </div>
@@ -46,9 +47,9 @@
                     <div class="panel-body">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span><strong> 標題 </strong></span>
                         <% if(content == undefined){ %>
-                        <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" value="查無標題" readonly="true">
+                        <input id="fs_title" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" value="查無標題" readonly="true">
                         <% }else{ %>
-                        <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" value="<%= content.title %>" readonly="true">
+                        <input id="fs_title" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" value="<%= content.title %>" readonly="true">
                         <% } %>
                         <hr>
                         <!-- Content goes here -->
@@ -66,7 +67,7 @@
                         <span class="glyphicon glyphicon-triangle-right"></span> 其他
                     </div>
                     <div class="panel-body">
-                        <button type="button" class="btn btn-primary btn-lg btn-block">我要捐贈!</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="goDonate()">我要捐贈!</button>
                         <button type="button" class="btn btn-primary btn-lg btn-block">喜歡~<i class="fa fa-heart" aria-hidden="true"></i></button>
                         <button type="button" class="btn btn-primary btn-lg btn-block">我要留言!</button>
                         <hr>
@@ -84,5 +85,36 @@
             </div>
         </div>
     </div>
+    <!-- For modal -->
+    <!-- Donate -->
+    <% include ../elements/donate_modal %>
 </body>
+<script>
+// enable socket io
+const socket = new io();
+socket.emit('join',{
+    room_name: "Donation usage"
+});
+
+$('#donate_modal').modal({show:false});
+
+// Go Donate
+function goDonate(){
+    $('#donate_modal').modal('show');
+}
+
+// Donate Confirm
+function donateConfirm(){
+    socket.emit('donate',{
+        dep: <%- JSON.stringify(dep_type) %>,
+        title: document.getElementById('fs_title').value,
+        lecturer: document.getElementById("fs_name").value,
+        dollar: parseInt(document.getElementById("donate_dollar").value),
+        currency: document.getElementById("donate_currency").value
+    });
+
+    // and then back to dep_page !
+    window.location.replace('/dep_page?dep_type='+<%- JSON.stringify(dep_type) %>);
+}
+</script>
 </html>
