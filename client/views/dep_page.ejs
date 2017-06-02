@@ -173,6 +173,12 @@ function Popout(index){
 }
 // Goto new page
 function Goto(index){
+    // send click event
+    socket.emit('click',{
+        dep: <%- JSON.stringify(dep_type) %>,
+        lecturer: document.getElementById("fs_name").innerHTML,
+        title: document.getElementById("fs_title").value
+    });
     // Go to new page
     window.location.replace('/article'+'?a_type=article&lecturer='+document.getElementById('a_lecturer_'+index).value+
                             '&title='+document.getElementById('a_title_'+index).value+
