@@ -105,14 +105,30 @@ class IntroService {
     }
     article(req,res){
         var linkobj = jsfs.readFileSync(path.join(__dirname,'static','navbar_link.json'));
-        var article_type = req.query.a_type; 
+        var article_type = req.query.a_type;
+        var dep_detail = jsfs.readFileSync(path.join(__dirname,'static','department',req.query.dep+'.json'));
         var type = (req.query.type == undefined) ? 'TW' : req.query.type;
         // type,lecturer,title,dep
         // Update: using db to store each article
         MongoDBService.find_article(req.query.dep,req.query.lecturer,req.query.title,function(err,msg_data){
             if(err){
                 console.log("[Error/NotFound]: "+msg_data);
-                // error page
+                // For DEMO - debug version:
+                for(var index in dep_detail.article){
+                    if(dep_detail.article[index].title == req.query.title && dep_detail.article[index].lecturer == req.query.lecturer){
+                        res.render('article',{
+                            title: req.query.title,
+                            link: linkobj.about,
+                            type: 'TW',
+                            url: req.url,
+                            dep_type: req.query.dep,
+                            content: dep_detail.article[index]
+                        });
+                        return;
+                    }
+                }
+                res.end("Error!");
+                /* error page
                 res.render('article',{
                     title: "縮哩~找不到該文章",
                     link: linkobj.about,
@@ -120,7 +136,7 @@ class IntroService {
                     url: req.url,
                     dep_type: req.query.dep,
                     content: undefined
-                });
+                });*/
             }
             else {
                 // get msg_data as find article
