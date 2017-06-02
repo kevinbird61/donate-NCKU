@@ -1,15 +1,28 @@
 {
     "member":[
         {
+            "img": "team/arlen.jpg",
+            "name": "Arlen",
+            "job": "Co-Founder",
+            "email": "htoatot@gmail.com"
+        },
+        {
+            "img": "team/fu.jpg",
+            "name": "傅韋翔",
+            "job": "Co-Founder",
+            "email": "yaya0983246501@gmail.com"
+        },
+        {
+            "img": "team/she.jpg",
+            "name": "紹伊",
+            "job": "Co-Founder",
+            "email": "she992751@gmail.com"
+        },
+        {
             "img": "team/cyu.jpg",
-            "name": "凱文小鳥",
+            "name": "Kevin Cyu",
             "job": "Software Engineer",
             "email": "kevinbird61@gmail.com"
-        },{
-            "img": "team/fake.jpg",
-            "name": "海濤",
-            "job": "法師",
-            "email": "1234567@gmail.com"
         }
     ]
 }

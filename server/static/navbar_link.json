@@ -57,14 +57,6 @@
                         }
                     }
                 ]
-            },
-            {
-                "type": "pure_link",
-                "link": "https://github.com/kevinbird61/donate-NCKU",
-                "name": {
-                    "TW": "原始碼",
-                    "US": "Source code"
-                }
             }
         ]
     },
