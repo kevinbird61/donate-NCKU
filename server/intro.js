@@ -72,12 +72,14 @@ class IntroService {
         MongoDBService.donate_m.find({dep:type}).sort('-donation').exec(function(err,array){
             // rearrange array
             var rearrange = [ ['From which lecturer','accumulate donation'] ];
+            var current_donation = 0;
             for(var index in array){
                 var new_obj = [ array[index].lecturer,array[index].donation ];
                 rearrange.push(new_obj);
+                current_donation += array[index].donation;
             }
             // render the page
-            res.render('dep_page',{
+            /*res.render('dep_page',{
                 title: "Department of "+type,
                 url: req.url,
                 link: linkobj.dep_page,
@@ -85,10 +87,11 @@ class IntroService {
                 dep_type: type,
                 currency: "NTD",
                 content: dep_detail,
+                current_donation: current_donation,
                 sorted_contribution: rearrange
-            });
+            });*/
             // Find dep_detail (by type)
-            /*MongoDBService.article_m.find({dep:type},function(err,dep_detail){
+            MongoDBService.article_m.find({dep:type},function(err,article){
                 // render the page
                 res.render('dep_page',{
                     title: "Department of "+type,
@@ -98,9 +101,11 @@ class IntroService {
                     dep_type: type,
                     currency: "NTD",
                     content: dep_detail,
+                    current_donation: current_donation,
+                    article: article,
                     sorted_contribution: rearrange
                 });
-            });*/
+            });
         });
     }
     article(req,res){
@@ -141,7 +146,7 @@ class IntroService {
             else {
                 // get msg_data as find article
                 res.render('article',{
-                    title: msg_data.title,
+                    title: "瀏覽文章",
                     link: linkobj.about,
                     url: req.url,
                     type: type,

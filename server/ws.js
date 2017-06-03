@@ -28,7 +28,7 @@ class WebSocket {
                 let uname = sjcl.decrypt(userObj.key,userObj.username);
                 let upass = sjcl.decrypt(userObj.key,userObj.passwd);;
                 // FIXME: using database to store instead json file
-
+                /*
                 jsfs.readFile(path.join(__dirname,'static','user','profile.json'),(err,data) => {
                     if(err)
                         console.log("Read user profile error!");
@@ -51,7 +51,26 @@ class WebSocket {
                             msg: 'Not found this user, you can use \'sign up\' to use our service!'
                         });
                     }
-                })
+                })*/
+                MongoDBService.check_user(uname,upass,function(err,msg_data){
+                    if(err){
+                        console.log("Can't find this user.");
+                        // emit error message to client
+                        socket.emit('login',{
+                            type: 'error',
+                            msg: msg_data
+                        });
+                    }
+                    else {
+                        // Find one ! msg_data == user
+                        console.log("Successfully login!");
+                        socket.emit('login',{
+                            type: 'accept',
+                            user: uname,
+                            key: userObj.key
+                        });
+                    }
+                });
             });
             // "signup"
             socket.on("signup",function(userObj){
@@ -59,7 +78,7 @@ class WebSocket {
                 let uname = sjcl.decrypt(userObj.key,userObj.username);
                 let upass = sjcl.decrypt(userObj.key,userObj.passwd);;
                 // FIXME: using database to store instead json file
-                jsfs.readFile(path.join(__dirname,'static','user','profile.json'),(err,data) => {
+                /*jsfs.readFile(path.join(__dirname,'static','user','profile.json'),(err,data) => {
                     if(err)
                         console.log("Read user profile error!");
                     else{
@@ -99,7 +118,24 @@ class WebSocket {
                             }
                         }); // write file back to profile
                     }
-                }); // read from profile.json
+                }); // read from profile.json*/
+                MongoDBService.add_user(uname,upass,function(err,msg_data){
+                    if(err){
+                        console.log("Can't create this user.");
+                        socket.emit('login',{
+                            type: 'error',
+                            msg: msg_data
+                        });
+                    }
+                    else {
+                        console.log("Successfully create this user.");
+                        socket.emit('login',{
+                            type: 'accept',
+                            user: uname,
+                            key: userObj.key
+                        });
+                    }
+                })
             }); // signup listening
             // "donate"
             socket.on("donate",function(donation){
@@ -121,15 +157,18 @@ class WebSocket {
                                 MongoDBService.donate_m.find({dep:donation.dep}).sort('-donation').exec(function(err,array){
                                     // rearrange array
                                     var rearrange = [ ['From which lecturer','accumulate donation'] ];
+                                    var current_donation = 0;
                                     for(var index in array){
                                         var new_obj = [ array[index].lecturer,array[index].donation ];
                                         rearrange.push(new_obj);
+                                        current_donation += array[index].donation;
                                     }
                                     // emit update message
                                     socket.emit('update',{
                                         current: data.donate.current,
                                         target: data.donate.target,
                                         currency: data.donate.currency,
+                                        current_donation: current_donation,
                                         sorted_contribution: rearrange
                                     });
                                 });

@@ -11,15 +11,15 @@
 <body>
     <div class="w3-row-padding" id="articleboard">
         <!-- Template  -->
-        <% for(var index in exist_article.obj){ %>
-            <div class="w3-third w3-container" id="<%= exist_article.obj[index].dep %><%= exist_article.obj[index].lecturer %>">
+        <% for(var index in exist_article){ %>
+            <div class="w3-third w3-container" id="<%= exist_article[index].dep %><%= exist_article[index].lecturer %>">
                 <!-- Custom department banner here -->
-                <input type="hidden" id="<%= index %>" value="<%= exist_article.obj[index].title %>">
-                <img src="http://i.imgur.com/RTx4hLq.jpg" alt="Norway" onclick="gotoEdit('<%= exist_article.obj[index].dep %>','<%= exist_article.obj[index].lecturer %>',<%= index %>)" style="width:100%" class="w3-hover-opacity">
+                <input type="hidden" id="<%= index %>" value="<%= exist_article[index].title %>">
+                <img src="<%= exist_article[index].img_url %>" alt="Norway" onclick="gotoEdit('<%= exist_article[index].dep %>','<%= exist_article[index].lecturer %>',<%= index %>)" style="width:100%" class="w3-hover-opacity">
                 <div class="w3-container w3-khaki w3-round-large">
                     <br>
-                    <p><b><%= exist_article.obj[index].dep %></b></p>
-                    <p><%= exist_article.obj[index].title %></p>
+                    <p><b><%= exist_article[index].dep %></b></p>
+                    <p><%= exist_article[index].title %></p>
                 </div>
             </div>
         <% } %>
@@ -30,7 +30,7 @@ function gotoEdit(department,user,index){
     var title = document.getElementById(index).value;
     // Goto Edit page
     // Reuse edit page ejs. Using type = "edit"
-    window.location.replace('/content?etype=edit&dep='+department+'&lecturer='+user+'&title='+title);
+    window.location.assign('/content?etype=edit&dep='+department+'&lecturer='+user+'&title='+title);
 }
 </script>
 </html>

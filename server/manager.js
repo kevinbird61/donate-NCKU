@@ -27,7 +27,17 @@ class Manager {
         var type = (req.query.type == undefined) ? 'TW' : req.query.type;
         var linkobj = jsfs.readFileSync(path.join(__dirname,'static','navbar_link.json'));
         // Fetch all department data (FIXME: using database)
-        var total_obj = {
+        MongoDBService.article_m.find({lecturer:username},function(err,all){
+            // render user's page
+            res.render('user',{
+                title: "Hello, " + username,
+                url: req.url,
+                exist_article: all,
+                link: linkobj.user_page,
+                type: type
+            })
+        });
+        /*var total_obj = {
             user: username,
             obj: []
         }
@@ -74,7 +84,7 @@ class Manager {
                     type: type
                 })
             }
-        });
+        });*/
     }
     content_page(req,res){
         let type = req.query.etype;
@@ -102,7 +112,7 @@ class Manager {
             let title = req.query.title;
             var linkobj = jsfs.readFileSync(path.join(__dirname,'static','navbar_link.json'));
             var dep_detail = jsfs.readFileSync(path.join(__dirname,'static','department',dep+'.json'));
-            for(var index in dep_detail.article){
+            /*for(var index in dep_detail.article){
                 if(dep_detail.article[index].lecturer == lecturer && dep_detail.article[index].title == title){
                     res.render('edit',{
                         title: "Modify Article page",
@@ -118,9 +128,9 @@ class Manager {
                     });
                     return;
                 }
-            }
+            }*/
             // Find target article to modify
-            /*MongoDBService.find_article(dep,lecturer,title,function(err,msg_data){
+            MongoDBService.find_article(dep,lecturer,title,function(err,msg_data){
                 if(err){
                     console.log("[Error/NotFound]: "+msg_data);
                     // error page
@@ -136,14 +146,14 @@ class Manager {
                         dep: depobj,
                         thisdep: dep,
                         thistitle: title,
+                        thisabout: msg_data.about,
+                        thisimg: msg_data.img_url,
                         thiscontent: msg_data.content,
                         link: linkobj.edit_page,
                         type: ltype
                     });
-                    return;
                 }
-            });*/
-            res.end("Error occur!");
+            });
         }
         else if(type == 'video'){
             res.end('Video has not support yet.')
@@ -157,9 +167,10 @@ class Manager {
         let title = req.body.title;
         let dep = req.body.dep;
         let lecturer = req.body.lecturer;
+        let about = req.body.about;
+        let img_url = req.body.img_url == undefined ? "http://i.imgur.com/RTx4hLq.jpg" : req.body.img_url;
         let content = req.body.content;
         // FIXME: store into database
-        console.log(edit_type+';'+title+';'+dep+';'+lecturer+';'+content);
         if(edit_type == "new_article"){
             // Store back into specific department
             /*var dep_detail = jsfs.readFileSync(path.join(__dirname,'static','department',dep+'.json'));
@@ -189,7 +200,7 @@ class Manager {
                 }
             });*/
             // Using db to add new article
-            MongoDBService.add_article(dep,lecturer,title,content,"null","http://i.imgur.com/RTx4hLq.jpg",function(err,msg_data){
+            MongoDBService.add_article(dep,lecturer,title,content,about,img_url,function(err,msg_data){
                 if(err){
                     console.log("[Error/Exist]: "+msg_data);
                     // error page
@@ -222,7 +233,7 @@ class Manager {
             }
             res.end("Modify not found. Cause error !");*/
             // Using db to update new article
-            MongoDBService.add_article(dep,lecturer,title,content,"null","http://i.imgur.com/RTx4hLq.jpg",function(err,msg_data){
+            MongoDBService.update_article(dep,lecturer,title,content,about,img_url,function(err,msg_data){
                 if(err){
                     console.log("[Error/Not found]: "+msg_data);
                     // error page

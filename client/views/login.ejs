@@ -89,6 +89,9 @@ window.addEventListener("beforeunload", function(e){
 
 function changeFocus(id){
     document.getElementById(id).className = 'active';
+    document.getElementById('username').value = '';
+    document.getElementById('password').value = '';
+    document.getElementById('HelpBlock').innerHTML = '';
     if(id == 'signup_tab'){
         // setup for sign up
         document.getElementById('signin_tab').className = '';

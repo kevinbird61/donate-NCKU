@@ -47,9 +47,9 @@
                     <div class="panel-body">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span><strong> 標題 </strong></span>
                         <% if(content == undefined){ %>
-                        <input id="fs_title" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" value="查無標題" readonly="true">
+                        <input id="fs_title" type="text" class="form-control" placeholder="Title" aria-describedby="basic-addon1" value="查無標題" readonly="true">
                         <% }else{ %>
-                        <input id="fs_title" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" value="<%= content.title %>" readonly="true">
+                        <input id="fs_title" type="text" class="form-control" placeholder="Title" aria-describedby="basic-addon1" value="<%= content.title %>" readonly="true">
                         <% } %>
                         <hr>
                         <!-- Content goes here -->
@@ -114,7 +114,7 @@ function donateConfirm(){
     });
 
     // and then back to dep_page !
-    window.location.replace('/dep_page?dep_type='+<%- JSON.stringify(dep_type) %>);
+    window.location.assign('/dep_page?dep_type='+<%- JSON.stringify(dep_type) %>);
 }
 </script>
 </html>

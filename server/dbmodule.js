@@ -42,12 +42,60 @@ class MongoDBService {
         this.article_m = mongoose.model('article_m',this.articleSchema);
         this.user_m = mongoose.model('user_m',this.userSchema);
     }
-    add_user(username,passwd,callback){
+    add_user(uname,pwd,callback){
         var userModel = this.user_m;
+        this.user_m.findOne({username: uname},'username',function(err,user){
+            if(err){
+                console.log("[Add_User] User-findOne error.");
+                callback(1,"[Add_User] User-findOne error.");
+            }
+            else{
+                if(user == null){
+                    // Not found this user => create !
+                    let newuser = new userModel({username: uname,passwd: pwd});
+                    newuser.save(function(err,newuser){
+                        if(err){
+                            console.log("Error with new user save: " + err);
+                            callback(1,err);
+                        }
+                        else{
+                            console.log("Successfully add new user!");
+                            callback(0,"create user!");
+                        }
+                    });
+                }
+                else{
+                    // exist => return error
+                    console.log("Duplicate account name, please use another account to sign up.");
+                    callback(1,"Duplicate account name, please use another account to sign up.");
+                }
+            }
+        });
     }
-    add_article(dep,lecturer,title,content,callback){
+    check_user(uname,pwd,callback){
+        var userModel = this.user_m;
+        this.user_m.findOne({username: uname,passwd: pwd},'username passwd',function(err,user){
+            if(err){
+                console.log("[Check_User] User-findOne error.");
+                callback(1,"[Check_User] User-findOne error.");
+            }
+            else{
+                if(user == null){
+                    // Not found this user => error
+                    console.log("Not found this user.");
+                    callback(1,"Not found this user.");
+                }
+                else{
+                    // exist => find !
+                    console.log("Found one !");
+                    callback(0,user);
+                }
+            }
+        });
+    }
+    add_article(dep,lecturer,title,content,about,img_url,callback){
         var articleModel = this.article_m;
-        this.article_m.findOne({lecturer:lecturer,dep:dep,title:title},'dep lecturer lecturer content',function(err,article){
+        this.article_m.findOne({lecturer:lecturer,dep:dep,title:title},'lecturer dep title',function(err,article){
             if(err){
                 console.log("Article-findOne error.");
                 callback(1,"Article-findOne error.");
@@ -55,7 +103,7 @@ class MongoDBService {
             else {
                 if(article == null){
                     // not found , then create one
-                    let newarticle = new articleModel({dep: dep,lecturer: lecturer,title: title,content: content,about: "null",img_url: "http://i.imgur.com/RTx4hLq.jpg"});
+                    let newarticle = new articleModel({dep:dep, lecturer:lecturer, title:title, content:content, about:about, img_url:img_url});
                     newarticle.save(function(err,newarticle){
                         if(err){
                             console.log("Error with article save:"+err);
@@ -76,7 +124,7 @@ class MongoDBService {
     }
     update_article(dep,lecturer,title,content,about,img_url,callback){
         var articleModel = this.article_m;
-        this.article_m.findOne({lecturer:lecturer,dep:dep,title:title},'dep lecturer lecturer content',function(err,article){
+        this.article_m.findOne({lecturer:lecturer,dep:dep,title:title},'dep lecturer title content about img_url',function(err,article){
             if(err){
                 console.log("Article-findOne error.");
                 callback(1,"Article-findOne error.");
@@ -108,7 +156,7 @@ class MongoDBService {
     }
     find_article(dep,lecturer,title,callback){
         var articleModel = this.article_m;
-        this.article_m.findOne({lecturer:lecturer,dep:dep,title:title},'dep lecturer lecturer content',function(err,article){
+        this.article_m.findOne({lecturer:lecturer,dep:dep,title:title},'dep lecturer content title img_url about',function(err,article){
             if(err){
                 console.log("Article-findOne error.");
                 callback(1,"Article-findOne error.");
