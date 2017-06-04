@@ -64,10 +64,26 @@
         "left": [
             {
                 "type": "pure_link",
+                "link": "/about",
+                "name": {
+                    "TW": "關於我們",
+                    "US": "About Team"
+                }
+            },
+            {
+                "type": "pure_link",
                 "link": "/department",
                 "name": {
                     "TW": "選擇系所",
                     "US": "Department"
+                }
+            },
+            {
+                "type": "inner_link",
+                "link": "#hotest",
+                "name": {
+                    "TW": "熱門項目",
+                    "US": "Hotest!"
                 }
             }
         ],
@@ -109,22 +125,38 @@
         "left": [
             {
                 "type": "pure_link",
-                "link": "/",
+                "link": "/about",
                 "name": {
-                    "TW": "回到首頁",
-                    "US": "Home"
+                    "TW": "關於我們",
+                    "US": "About Team"
                 }
             },
             {
                 "type": "pure_link",
                 "link": "/department",
                 "name": {
-                    "TW": "回系所選擇",
-                    "US": "Back to choose the department."
+                    "TW": "選擇系所",
+                    "US": "Department"
+                }
+            },
+            {
+                "type": "inner_link",
+                "link": "#hotest",
+                "name": {
+                    "TW": "熱門項目",
+                    "US": "Hotest!"
                 }
             }
         ],
         "right": [
+            {
+                "type": "pure_link",
+                "link": "/login",
+                "name": {
+                    "TW": "登入/註冊",
+                    "US": "Sign In/Sign Up"
+                }
+            },
             {
                 "type": "dropdown",
                 "name": {
@@ -133,14 +165,14 @@
                 },
                 "sublink": [
                     {
-                        "link": "&type=TW",
+                        "link": "?type=TW",
                         "name":{
                             "TW":"繁體中文",
                             "US":"Traditional Chinese"
                         }
                     },
                     {
-                        "link": "&type=US",
+                        "link": "?type=US",
                         "name":{
                             "TW":"英語",
                             "US":"English"
@@ -151,7 +183,65 @@
         ]
     },
     "login":{
-
+        "left": [
+            {
+                "type": "pure_link",
+                "link": "/about",
+                "name": {
+                    "TW": "關於我們",
+                    "US": "About Team"
+                }
+            },
+            {
+                "type": "pure_link",
+                "link": "/department",
+                "name": {
+                    "TW": "選擇系所",
+                    "US": "Department"
+                }
+            },
+            {
+                "type": "inner_link",
+                "link": "#hotest",
+                "name": {
+                    "TW": "熱門項目",
+                    "US": "Hotest!"
+                }
+            }
+        ],
+        "right": [
+            {
+                "type": "pure_link",
+                "link": "/login",
+                "name": {
+                    "TW": "登入/註冊",
+                    "US": "Sign In/Sign Up"
+                }
+            },
+            {
+                "type": "dropdown",
+                "name": {
+                    "TW": "語言選擇",
+                    "US": "Language"
+                },
+                "sublink": [
+                    {
+                        "link": "?type=TW",
+                        "name":{
+                            "TW":"繁體中文",
+                            "US":"Traditional Chinese"
+                        }
+                    },
+                    {
+                        "link": "?type=US",
+                        "name":{
+                            "TW":"英語",
+                            "US":"English"
+                        }
+                    }
+                ]
+            }
+        ]
     },
     "user_page":{
         "right":[
@@ -196,6 +286,64 @@
         ]
     },
     "edit_page": {
-
+        "left": [
+            {
+                "type": "pure_link",
+                "link": "/about",
+                "name": {
+                    "TW": "關於我們",
+                    "US": "About Team"
+                }
+            },
+            {
+                "type": "pure_link",
+                "link": "/department",
+                "name": {
+                    "TW": "選擇系所",
+                    "US": "Department"
+                }
+            },
+            {
+                "type": "inner_link",
+                "link": "#hotest",
+                "name": {
+                    "TW": "熱門項目",
+                    "US": "Hotest!"
+                }
+            }
+        ],
+        "right": [
+            {
+                "type": "pure_link",
+                "link": "/login",
+                "name": {
+                    "TW": "登入/註冊",
+                    "US": "Sign In/Sign Up"
+                }
+            },
+            {
+                "type": "dropdown",
+                "name": {
+                    "TW": "語言選擇",
+                    "US": "Language"
+                },
+                "sublink": [
+                    {
+                        "link": "?type=TW",
+                        "name":{
+                            "TW":"繁體中文",
+                            "US":"Traditional Chinese"
+                        }
+                    },
+                    {
+                        "link": "?type=US",
+                        "name":{
+                            "TW":"英語",
+                            "US":"English"
+                        }
+                    }
+                ]
+            }
+        ]
     }
 }
