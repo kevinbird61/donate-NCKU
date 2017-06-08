@@ -5,14 +5,259 @@
             "US": "CSIE",
             "loc": "成功校區",
             "img": "/wrapper.jpg",
-            "intro": "/department/csie.png"
+            "intro": "/department/CSIE.jpg"
         },
         {
             "TW": "電機系",
             "US": "EE",
             "loc": "自強校區",
             "img": "/wrapper.jpg",
-            "intro": "/department/csie.png"
+            "intro": "/department/EE.jpg"
+        },
+        {
+            "TW": "工科系",
+            "US": "ES",
+            "loc": "成功校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/ES.jpg"
+        },
+        {
+            "TW": "工設系",
+            "US": "ID",
+            "loc": "光復校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/ID.jpg"
+        },
+        {
+            "TW": "工資管系",
+            "US": "IIM",
+            "loc": "光復校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/IIM.jpg"
+        },
+        {
+            "TW": "中文系",
+            "US": "CL",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/CL.jpg"
+        },
+        {
+            "TW": "航太系",
+            "US": "AA",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/AA.jpg"
+        },
+        {
+            "TW": "會計系",
+            "US": "ACC",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/ACC.jpg"
+        },
+        {
+            "TW": "企管系",
+            "US": "BA",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/BA.jpg"
+        },
+        {
+            "TW": "醫工系",
+            "US": "BME",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/BME.jpg"
+        },
+        {
+            "TW": "化工系",
+            "US": "CHE",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/CHE.jpg"
+        },
+        {
+            "TW": "化學系",
+            "US": "CHEM",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/CHEM.jpg"
+        },
+        {
+            "TW": "地科系",
+            "US": "EARS",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/EARS.jpg"
+        },
+        {
+            "TW": "經濟系",
+            "US": "ECON",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/ECON.jpg"
+        },
+        {
+            "TW": "光電系",
+            "US": "EOSE",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/EOSE.jpg"
+        },
+        {
+            "TW": "外文系",
+            "US": "FLL",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/FLL.jpg"
+        },
+        {
+            "TW": "測量系",
+            "US": "GM",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/GM.jpg"
+        },
+        {
+            "TW": "歷史系",
+            "US": "HIS",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/HIS.jpg"
+        },
+        {
+            "TW": "水利系",
+            "US": "HOE",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/HOE.jpg"
+        },
+        {
+            "TW": "法律系",
+            "US": "LAW",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/LAW.jpg"
+        },
+        {
+            "TW": "數學系",
+            "US": "MATH",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/MATH.jpg"
+        },
+        {
+            "TW": "機械系",
+            "US": "ME",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/ME.jpg"
+        },
+        {
+            "TW": "醫學系",
+            "US": "MED",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/MED.jpg"
+        },
+        {
+            "TW": "醫檢系",
+            "US": "MEDC",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/MEDC.jpg"
+        },
+        {
+            "TW": "材料系",
+            "US": "MSE",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/MSE.jpg"
+        },
+        {
+            "TW": "護理系",
+            "US": "NURS",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/NURS.jpg"
+        },
+        {
+            "TW": "職治系",
+            "US": "OT",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/OT.jpg"
+        },
+        {
+            "TW": "物理系",
+            "US": "PHYS",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/PHYS.jpg"
+        },
+        {
+            "TW": "政治系",
+            "US": "PS",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/PS.jpg"
+        },
+        {
+            "TW": "心理系",
+            "US": "PSY",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/PSY.jpg"
+        },
+        {
+            "TW": "物治系",
+            "US": "PT",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/PT.jpg"
+        },
+        {
+            "TW": "資源系",
+            "US": "RE",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/RE.jpg"
+        },
+        {
+            "TW": "統計系",
+            "US": "STAT",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/STAT.jpg"
+        },
+        {
+            "TW": "系統系",
+            "US": "SYS",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/SYS.jpg"
+        },
+        {
+            "TW": "交管系",
+            "US": "TCM",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/TCM.jpg"
+        },
+        {
+            "TW": "台文系",
+            "US": "TWL",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/TWL.jpg"
+        },
+        {
+            "TW": "都計系",
+            "US": "UP",
+            "loc": "校區",
+            "img": "/wrapper.jpg",
+            "intro": "/department/UP.jpg"
         }
     ]
 }

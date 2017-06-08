@@ -1,0 +1,18 @@
+{
+    "article": [
+    ],
+    "video": [
+        {
+            "title": "example title",
+            "lecturer": "Lecturer(video).",
+            "about": "Something about me.",
+            "img_url": "http://i.imgur.com/RTx4hLq.jpg",
+            "content": "something need to say..."
+        }
+    ],
+    "donate": {
+        "target": 10000000,
+        "current": 21100,
+        "currency": "NTD"
+    }
+}
