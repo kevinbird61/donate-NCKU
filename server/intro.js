@@ -21,7 +21,7 @@ class IntroService {
                 console.log("Fetch click from database error");
             else{
                 res.render('index',{
-                    title: "Donate-NCKU",
+                    title: "Share-u-Life",
                     hotest_video: "https://www.youtube.com/embed/e-x1l53ZEKk?autoplay=1",
                     landing: content,
                     url: req.url,

@@ -40,5 +40,5 @@ const server = http.createServer(app);
 WebSocket.init(server);
 
 server.listen(process.env.npm_package_config_port, function() {
-    console.log("SCABER server listening on port " + process.env.npm_package_config_port);
+    console.log("SHARE-u-Life server listening on port " + process.env.npm_package_config_port);
 });
