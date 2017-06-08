@@ -14,26 +14,24 @@
         <% for(var index in landing.slogan){ %>
             <% if(index == 0){ %>
                 <div class="item active">
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h1><%= landing.slogan[index].title %></h1>
-                            <p><%= landing.slogan[index].detail %></p>
-                            <% if(landing.slogan[index].link == true ){ %>
-                                <p><a class="btn btn-lg btn-primary" href="<%= landing.slogan[index].link_href %>" role="button"><%= landing.slogan[index].link_name %></a></p>
-                            <% } %>
-                        </div>
+                    <img src="<%= landing.slogan[index].img %>" class="img-fluid">
+                    <div class="carousel-caption">
+                        <h1><%= landing.slogan[index].title %></h1>
+                        <p><%= landing.slogan[index].detail %></p>
+                        <% if(landing.slogan[index].link == true ){ %>
+                            <p><a class="btn btn-lg btn-primary" href="<%= landing.slogan[index].link_href %>" role="button"><%= landing.slogan[index].link_name %></a></p>
+                        <% } %>
                     </div>
                 </div>
             <% }else{ %>
                 <div class="item">
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h1><%= landing.slogan[index].title %></h1>
-                            <p><%= landing.slogan[index].detail %></p>
-                            <% if(landing.slogan[index].link == true ){ %>
-                                <p><a class="btn btn-lg btn-primary" href="<%= landing.slogan[index].link_href %>" role="button"><%= landing.slogan[index].link_name %></a></p>
-                            <% } %>
-                        </div>
+                    <img src="<%= landing.slogan[index].img %>" class="img-fluid">
+                    <div class="carousel-caption">
+                        <h1><%= landing.slogan[index].title %></h1>
+                        <p><%= landing.slogan[index].detail %></p>
+                        <% if(landing.slogan[index].link == true ){ %>
+                            <p><a class="btn btn-lg btn-primary" href="<%= landing.slogan[index].link_href %>" role="button"><%= landing.slogan[index].link_name %></a></p>
+                        <% } %>
                     </div>
                 </div>
             <% } %>
