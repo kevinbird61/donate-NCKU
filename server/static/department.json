@@ -4,15 +4,15 @@
             "TW": "資訊系",
             "US": "CSIE",
             "loc": "成功校區",
-            "img": "wrapper.jpg",
-            "intro": "department/csie.png"
+            "img": "/wrapper.jpg",
+            "intro": "/department/csie.png"
         },
         {
             "TW": "電機系",
             "US": "EE",
             "loc": "自強校區",
-            "img": "wrapper.jpg",
-            "intro": "department/csie.png"
+            "img": "/wrapper.jpg",
+            "intro": "/department/csie.png"
         }
     ]
 }

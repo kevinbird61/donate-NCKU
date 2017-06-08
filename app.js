@@ -11,12 +11,10 @@ const { Manager } = require('./server/manager');
 const { MongoDBService } = require('./server/dbmodule');
 
 /* Setting static directory */
-app.use(express.static(__dirname+'/client/elements'));
-app.use(express.static(__dirname+'/client/img'));
-app.use(express.static(__dirname+'/client/css'));
-app.use(express.static(__dirname+'/client/js'));
-app.use(express.static(__dirname+'/client/lib'));
-app.use(express.static(__dirname+'/client/fonts'));
+app.use(express.static(path.join(__dirname,'client','elements')));
+app.use(express.static(path.join(__dirname,'client','css')));
+app.use(express.static(path.join(__dirname,'client','img')));
+app.use(express.static(path.join(__dirname,'client','js')));
 
 app.use(bodyParser.urlencoded({
     extended: true

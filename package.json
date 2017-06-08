@@ -1,5 +1,5 @@
 {
-    "name": "donate-NCKU",
+    "name": "share-u-life",
     "main": "app.js",
     "config":  {
         "port": 1234
@@ -12,7 +12,7 @@
     "license": "GPL-3.0",
     "repository":{
         "type": "git",
-        "url": "https://github.com/kevinbird61/donate-NCKU.git"
+        "url": "https://github.com/kevinbird61/share-u-life.git"
     },
     "dependencies": {
         "body-parser": "^1.15.2",
