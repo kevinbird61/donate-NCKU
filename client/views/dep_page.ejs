@@ -74,7 +74,7 @@
         <% for(var index in content.video){ %>
             <div class="w3-third w3-container" id="<%= content.video[index].lecturer %>">
                 <!-- Custom department banner here -->
-                <img src="http://i.imgur.com/RTx4hLq.jpg" alt="Norway" onclick="" style="width:100%" class="w3-hover-opacity">
+                <img src="http://i.imgur.com/RTx4hLq.jpg" alt="Norway" onclick="goVideo(<%= index %>)" style="width:100%" class="w3-hover-opacity">
                 <div class="w3-container w3-aqua w3-round-large">
                     <br>
                     <p><b><%= content.video[index].lecturer %></b></p>
@@ -183,6 +183,13 @@ function Goto(index){
                             '&title='+document.getElementById('a_title_'+index).value+
                             '&dep='+<%- JSON.stringify(dep_type) %>
                         );
+}
+
+// Goto Video view page
+function goVideo(index){
+    // send click event (FIXME)
+
+    window.location.assign('/video?a_type=');
 }
 
 // Donate page

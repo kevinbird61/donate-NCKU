@@ -9,6 +9,7 @@ class IntroService {
         app.get('/department',this.department);
         app.get('/dep_page',this.dep_page);
         app.get('/article',this.article);
+        app.get('/video',this.video);
     }
     index(req,res){
         var linkobj = jsfs.readFileSync(path.join(__dirname,'static','navbar_link.json'));
@@ -155,6 +156,9 @@ class IntroService {
                 });
             }
         });
+    }
+    video(req,res){
+        // show the video page 
     }
 }
 
