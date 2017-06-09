@@ -19,6 +19,8 @@ class MongoDBService {
             dep: String,
             lecturer: String,
             title: String,
+            type: String,
+            url: String,
             click: Number
         });
         // Article maintain
@@ -211,15 +213,15 @@ class MongoDBService {
             }
         })
     }
-    article_click(dep,lecturer,title,callback){
+    article_click(dep,lecturer,title,type,url,callback){
         var clickModel = this.click_m;
-        this.click_m.findOne({dep: dep,lecturer: lecturer,title: title},'dep lecturer title click',function(err,article){
+        this.click_m.findOne({dep: dep,lecturer: lecturer,title: title,type: type,url: url},'dep lecturer title type url click',function(err,article){
             if(err)
                 console.log(err);
             else{
                 if(article == null){
                     // not found
-                    let newarticle = new clickModel({dep: dep,lecturer: lecturer,title: title,click : 1});
+                    let newarticle = new clickModel({dep: dep,lecturer: lecturer,title: title, type: type,url: url,click : 1});
                     newarticle.save(function(err,newarticle){
                         if(err){
                             console.log("Error with article click save: "+err);

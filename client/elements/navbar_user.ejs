@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default">
-    <div class="container-fluid">
+    <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -18,9 +18,9 @@
                 <% for(var index in link.left){ %>
                     <% if(link.left[index].type == "pure_link"){ %>
                         <% if( type == 'TW'){ %>
-                            <li><a href="<%= link.left[index].link %>&username=<%= exist_article.user %>"><%= link.left[index].name.TW %></a></li>
+                            <li><a href="<%= link.left[index].link %>&username=<%= user %>"><%= link.left[index].name.TW %></a></li>
                         <% } else if( type == 'US'){ %>
-                            <li><a href="<%= link.left[index].link %>&username=<%= exist_article.user %>"><%= link.left[index].name.US %></a></li>
+                            <li><a href="<%= link.left[index].link %>&username=<%= user %>"><%= link.left[index].name.US %></a></li>
                         <% } %>
                     <% } else if(link.left[index].type == "dropdown"){ %>
                         <% if( type == 'TW'){ %>
@@ -59,9 +59,9 @@
                 <% for(var index in link.right){ %>
                     <% if(link.right[index].type == "pure_link"){ %>
                         <% if( type == 'TW'){ %>
-                            <li><a href="<%= link.right[index].link %>&username=<%= exist_article.user %>"><%= link.right[index].name.TW %></a></li>
+                            <li><a href="<%= link.right[index].link %>&username=<%= user %>"><%= link.right[index].name.TW %></a></li>
                         <% } else if( type == 'US'){ %>
-                            <li><a href="<%= link.right[index].link %>&username=<%= exist_article.user %>"><%= link.right[index].name.US %></a></li>
+                            <li><a href="<%= link.right[index].link %>&username=<%= user %>"><%= link.right[index].name.US %></a></li>
                         <% } %>
                     <% } else if(link.right[index].type == "dropdown"){ %>
                         <% if( type == 'TW'){ %>

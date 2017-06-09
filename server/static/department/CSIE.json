@@ -42,12 +42,13 @@
             "lecturer": "Lecturer(video).",
             "about": "Something about me.",
             "img_url": "http://i.imgur.com/RTx4hLq.jpg",
+            "v_url": "https://www.youtube.com/embed/e-x1l53ZEKk?autoplay=1",
             "content": "something need to say..."
         }
     ],
     "donate": {
         "target": 1000000,
-        "current": 0,
+        "current": 30000,
         "currency": "NTD"
     }
 }

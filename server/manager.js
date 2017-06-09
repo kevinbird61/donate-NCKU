@@ -32,6 +32,7 @@ class Manager {
             res.render('user',{
                 title: "Hello, " + username,
                 url: req.url,
+                user: username,
                 exist_article: all,
                 link: linkobj.user_page,
                 type: type

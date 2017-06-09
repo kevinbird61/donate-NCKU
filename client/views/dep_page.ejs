@@ -170,6 +170,7 @@ function Popout(index){
     // send click event
     socket.emit('click',{
         dep: <%- JSON.stringify(dep_type) %>,
+        type: "article",
         lecturer: document.getElementById("fs_name").innerHTML,
         title: document.getElementById("fs_title").value
     });
@@ -180,8 +181,10 @@ function Goto(index){
     // send click event
     socket.emit('click',{
         dep: <%- JSON.stringify(dep_type) %>,
-        lecturer: document.getElementById("fs_name").innerHTML,
-        title: document.getElementById("fs_title").value
+        type: "article",
+        lecturer: document.getElementById('a_lecturer_'+index).value,
+        title: document.getElementById('a_title_'+index).value,
+        url: document.getElementById('a_img_'+index).value
     });
     // Go to new page
     window.location.assign('/article'+'?a_type=article&lecturer='+document.getElementById('a_lecturer_'+index).value+
@@ -193,7 +196,13 @@ function Goto(index){
 // Goto Video view page
 function goVideo(index){
     // send click event (FIXME)
-
+    socket.emit('click',{
+        dep: <%- JSON.stringify(dep_type) %>,
+        type: "video",
+        lecturer: document.getElementById('v_lecturer_'+index).value,
+        title: document.getElementById('v_title_'+index).value,
+        url: document.getElementById('v_url_'+index).value
+    });
     // Go to video page
     window.location.assign('/video?a_type=video&lecturer='+document.getElementById('v_lecturer_'+index).value +
                             '&title=' + document.getElementById('v_title_'+index).value +

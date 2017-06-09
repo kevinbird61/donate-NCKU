@@ -182,7 +182,7 @@ class WebSocket {
             }); // donation service
             // "click"
             socket.on("click",function(click_event){
-                MongoDBService.article_click(click_event.dep,click_event.lecturer,click_event.title, (err,msg) => {
+                MongoDBService.article_click(click_event.dep,click_event.lecturer,click_event.title,click_event.type,click_event.url, (err,msg) => {
                     if(err)
                         console.log(msg);
                     else {
