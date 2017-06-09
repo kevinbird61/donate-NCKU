@@ -74,6 +74,11 @@
         <% for(var index in content.video){ %>
             <div class="w3-third w3-container" id="<%= content.video[index].lecturer %>">
                 <!-- Custom department banner here -->
+                <input type="hidden" id="v_content_<%= index %>" value="<%= content.video[index].content %>">
+                <input type="hidden" id="v_lecturer_<%= index %>" value="<%= content.video[index].lecturer %>">
+                <input type="hidden" id="v_img_<%= index %>" value="<%= content.video[index].img_url %>">
+                <input type="hidden" id="v_url_<%= index %>" value="<%= content.video[index].v_url %>">
+                <input type="hidden" id="v_title_<%= index %>" value="<%= content.video[index].title %>">
                 <img src="http://i.imgur.com/RTx4hLq.jpg" alt="Norway" onclick="goVideo(<%= index %>)" style="width:100%" class="w3-hover-opacity">
                 <div class="w3-container w3-aqua w3-round-large">
                     <br>
@@ -189,7 +194,11 @@ function Goto(index){
 function goVideo(index){
     // send click event (FIXME)
 
-    window.location.assign('/video?a_type=');
+    // Go to video page
+    window.location.assign('/video?a_type=video&lecturer='+document.getElementById('v_lecturer_'+index).value +
+                            '&title=' + document.getElementById('v_title_'+index).value +
+                            '&video_url=' + document.getElementById('v_url_'+index).value +
+                            '&dep='+<%- JSON.stringify(dep_type) %>);
 }
 
 // Donate page
