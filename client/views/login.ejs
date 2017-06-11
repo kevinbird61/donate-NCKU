@@ -103,7 +103,7 @@ function changeFocus(id){
 function sign(){
     var uname = document.getElementById('username').value;
     var upass = document.getElementById('password').value;
-    if(uname.length < 8 || upass.length < 8 ){
+    if(upass.length < 8 ){
         // Info box
         document.getElementById('HelpBlock').className = 'w3-text-red form-text text-muted';
         document.getElementById('HelpBlock').innerHTML = 'Your username/password need to longer than 8 characters.';

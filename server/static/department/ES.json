@@ -1,26 +1,13 @@
 {
     "article": [
-        {
-            "title": "example title",
-            "lecturer": "Lecturer.",
-            "about": "Something about me.",
-            "img_url": "http://i.imgur.com/RTx4hLq.jpg",
-            "content": "something need to say..."
-        },
-        {
-            "title": "Test suite.",
-            "lecturer": "kevinbird6161",
-            "about": "Something, need to fetch from user data",
-            "img_url": "http://i.imgur.com/RTx4hLq.jpg",
-            "content": "Hello, I'm test issue."
-        }
     ],
     "video": [
         {
-            "title": "example title",
-            "lecturer": "Lecturer(video).",
-            "about": "Something about me.",
-            "img_url": "http://i.imgur.com/RTx4hLq.jpg",
+            "title": "專訪 - 成大工科系 102 級蔡宜蓁學姊",
+            "lecturer": "蔡宜蓁",
+            "about": "成大工科系 102 級 & Stanford電腦科學碩士， LinkedIn 軟體工程師",
+            "img_url": "http://i.imgur.com/upfaqaN.jpg",
+            "v_url": "https://www.youtube.com/embed/31gTqblXIi4?autoplay=1",
             "content": "something need to say..."
         }
     ],

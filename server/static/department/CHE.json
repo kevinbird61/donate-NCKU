@@ -1,26 +1,13 @@
 {
     "article": [
-        {
-            "title": "example title",
-            "lecturer": "Lecturer.",
-            "about": "Something about me.",
-            "img_url": "http://i.imgur.com/RTx4hLq.jpg",
-            "content": "something need to say..."
-        },
-        {
-            "title": "Test suite.",
-            "lecturer": "kevinbird6161",
-            "about": "Something, need to fetch from user data",
-            "img_url": "http://i.imgur.com/RTx4hLq.jpg",
-            "content": "Hello, I'm test issue."
-        }
     ],
     "video": [
         {
-            "title": "example title",
-            "lecturer": "Lecturer(video).",
-            "about": "Something about me.",
-            "img_url": "http://i.imgur.com/RTx4hLq.jpg",
+            "title": "專訪 - 成大化工所 104 級林華蒼學長",
+            "lecturer": "林華蒼",
+            "about": "化工所 104 級, 石梅化學有限公司 - 研發工程師",
+            "img_url": "http://i.imgur.com/dswEvn8.jpg",
+            "v_url": "https://www.youtube.com/embed/XBjtan1wqj4?autoplay=1",
             "content": "something need to say..."
         }
     ],

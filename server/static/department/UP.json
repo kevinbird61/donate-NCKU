@@ -1,28 +1,8 @@
 {
     "article": [
-        {
-            "title": "example title",
-            "lecturer": "Lecturer.",
-            "about": "Something about me.",
-            "img_url": "http://i.imgur.com/RTx4hLq.jpg",
-            "content": "something need to say..."
-        },
-        {
-            "title": "Test suite.",
-            "lecturer": "kevinbird6161",
-            "about": "Something, need to fetch from user data",
-            "img_url": "http://i.imgur.com/RTx4hLq.jpg",
-            "content": "Hello, I'm test issue."
-        }
     ],
     "video": [
-        {
-            "title": "example title",
-            "lecturer": "Lecturer(video).",
-            "about": "Something about me.",
-            "img_url": "http://i.imgur.com/RTx4hLq.jpg",
-            "content": "something need to say..."
-        }
+        
     ],
     "donate": {
         "target": 10000000,
