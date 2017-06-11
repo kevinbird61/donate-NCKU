@@ -79,7 +79,7 @@
                 <input type="hidden" id="v_img_<%= index %>" value="<%= content.video[index].img_url %>">
                 <input type="hidden" id="v_url_<%= index %>" value="<%= content.video[index].v_url %>">
                 <input type="hidden" id="v_title_<%= index %>" value="<%= content.video[index].title %>">
-                <img src="http://i.imgur.com/RTx4hLq.jpg" alt="Norway" onclick="goVideo(<%= index %>)" style="width:100%" class="w3-hover-opacity">
+                <img src="<%= content.video[index].img_url %>" alt="Norway" onclick="goVideo(<%= index %>)" style="width:100%" class="w3-hover-opacity">
                 <div class="w3-container w3-aqua w3-round-large">
                     <br>
                     <p><b><%= content.video[index].lecturer %></b></p>
