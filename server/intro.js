@@ -17,19 +17,51 @@ class IntroService {
         var type = (req.query.type == undefined) ? 'TW' : req.query.type;
 
         // Fetch the click information (limit with 2 entries)
-        MongoDBService.click_m.find({}).sort('-click').limit(2).exec(function(err,array){
+        MongoDBService.click_m.find({type:"article"}).sort('-click').limit(2).exec(function(err,array){
             if(err)
                 console.log("Fetch click from database error");
             else{
-                res.render('index',{
-                    title: "Share-u-Life",
-                    hotest_video: "https://www.youtube.com/embed/e-x1l53ZEKk?autoplay=1",
-                    landing: content,
-                    url: req.url,
-                    link: linkobj.index,
-                    type: type,
-                    sorted_click: array
+                // console.dir(array);
+                MongoDBService.click_m.find({type:"video"}).sort('-click').limit(1).exec(function(v_err,v_array){
+                    if(v_err)
+                        console.log("Fetch click from database error");
+                    else{
+                        // console.dir(v_array);
+                        if(v_array.length == 0){
+                            res.render('index',{
+                                title: "Share-u-Life",
+                                video: {},
+                                landing: content,
+                                url: req.url,
+                                link: linkobj.index,
+                                type: type,
+                                sorted_click: array
+                            });
+                            return;
+                        }
+                        else{
+                            let dep_detail = jsfs.readFileSync(path.join(__dirname,'static','department',v_array[0].dep+'.json'));
+                            // Find the target obj to fetch the video url
+                            for(var index in dep_detail.video){
+                                if(dep_detail.video[index].lecturer == v_array[0].lecturer && dep_detail.video[index].title == v_array[0].title){
+                                    res.render('index',{
+                                        title: "Share-u-Life",
+                                        video_lecturer: v_array[0].lecturer,
+                                        video_title: v_array[0].title,
+                                        hotest_video: dep_detail.video[index].v_url,
+                                        video: v_array[0],
+                                        landing: content,
+                                        url: req.url,
+                                        link: linkobj.index,
+                                        type: type,
+                                        sorted_click: array
+                                    });
+                                }
+                            }
+                        }
+                    }
                 });
+
             }
         });
     }
@@ -158,7 +190,30 @@ class IntroService {
         });
     }
     video(req,res){
-        // show the video page 
+        // show the video page
+        let lecturer = req.query.lecturer;
+        let title = req.query.title;
+        let v_url = req.query.video_url;
+        let dep = req.query.dep;
+
+        var linkobj = jsfs.readFileSync(path.join(__dirname,'static','navbar_link.json'));
+        var v_type = req.query.a_type;
+        // var dep_detail = jsfs.readFileSync(path.join(__dirname,'static','department',req.query.dep+'.json'));
+        var type = (req.query.type == undefined) ? 'TW' : req.query.type;
+
+        // go to video page
+        res.render('video',{
+            title: "瀏覽影片",
+            link: linkobj.about,
+            url: req.url,
+            type: type,
+            dep_type: dep,
+            content: {
+                lecturer: lecturer,
+                title: title,
+                video: v_url
+            }
+        });
     }
 }
 

@@ -5,7 +5,7 @@
     ],
     "donate": {
         "target": 1000000,
-        "current": 0,
+        "current": 30000,
         "currency": "NTD"
     }
 }

@@ -7,7 +7,7 @@
                     <h3><b> <%= sorted_click[index].dep %> </b> </h3>
                     <hr>
                     <h4><b> <%= sorted_click[index].lecturer %> </b> - <%= sorted_click[index].title %> </h4>
-                    <img src="http://i.imgur.com/RTx4hLq.jpg" alt="Norway" onclick="" style="width:100%" class="w3-hover-opacity">
+                    <img src="<%= sorted_click[index].url %>" alt="Norway" onclick="" style="width:100%" class="w3-hover-opacity">
                 </div>
                 <br>
             <% } %>
@@ -16,8 +16,10 @@
     <div class="col-md-8">
         <div class="w3-row-padding w3-round-xlarge w3-light-gray" style="margin-right:10px;">
             <h2> Top hotest video article: </h2>
+            <h4> 講者 - <%= video.lecturer %> </h4>
+            <h4> 主題 - <%= video.title %></h4>
             <div class="w3-center">
-                <iframe src="<%= hotest_video %>" frameborder="0" allowfullscreen style="margin:20px;width:90%;height:80%"></iframe>
+                <iframe src="<%= video.url %>" frameborder="0" allowfullscreen style="margin:20px;width:90%;height:80%"></iframe>
             </div>
         </div>
     </div>

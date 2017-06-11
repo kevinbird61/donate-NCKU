@@ -16,6 +16,15 @@
     <% } %>
 </body>
 <script>
+$(document).ready(function(){
+    $("form").submit(function(e){
+        if($('#lecturer').val()=='' || $('#dep').val()=='' || $('#title').val()=='' || $('#about').val()=='' || $('#img_url').val()=='' || $('#content').val()=='' ){
+            alert("請填上所有資訊！");
+            e.preventDefault();
+        }
+    });
+})
+
 function fillDep(depname){
     document.getElementById('dep').value = depname;
 }
